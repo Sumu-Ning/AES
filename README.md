@@ -1,6 +1,6 @@
 # AES algorithm implementation by ABAP
 
-ABAP Utilities for AES encryption, decryption
+ABAP Utilities for AES encryption, decryption under MIT License.
 
 Actual Implementation is done by the more generic Rijndael way, and AES is treated as a special case.
 
