@@ -464,7 +464,7 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
     block_cursor = 0.
     WHILE block_cursor < number_of_blocks.
-      block_offset = block_cursor * m_block_length_in_word.
+      block_offset = block_cursor * m_block_length_in_byte.
 
       CLEAR temp_array.
       cursor = 1.
@@ -477,7 +477,7 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
       ENDWHILE.
 
       LOOP AT c_array FROM block_offset + 1 TO block_offset + m_block_length_in_byte ASSIGNING <fs_x>.
-        READ TABLE temp_array INDEX sy-tabix - block_offset INTO <fs_x>.
+        READ TABLE temp_array INDEX sy-tabix INTO <fs_x>.
       ENDLOOP.
 
       block_cursor = block_cursor + 1.
@@ -521,7 +521,7 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
     block_cursor = 0.
     WHILE block_cursor < number_of_blocks.
-      block_offset = block_cursor * m_block_length_in_word.
+      block_offset = block_cursor * m_block_length_in_byte.
 
       CLEAR temp_array.
       cursor = 1.
@@ -534,7 +534,7 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
       ENDWHILE.
 
       LOOP AT c_array FROM block_offset + 1 TO block_offset + m_block_length_in_byte ASSIGNING <fs_x>.
-        READ TABLE temp_array INDEX sy-tabix - block_offset INTO <fs_x>.
+        READ TABLE temp_array INDEX sy-tabix INTO <fs_x>.
       ENDLOOP.
 
       block_cursor = block_cursor + 1.
