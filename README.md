@@ -8,3 +8,4 @@ Please just copy the source code file into ABAP editor (Source Code-Based mode),
 
 Classes:
   ZCL_RIJNDAEL_UTILITY: implementation of Rijndael, encrypt and decrypt using xstring.
+  ZCL_AES_UTILITY: AES wrapper on ZCL_RIJNDAEL_UTILITY, just need to provide key and data.
