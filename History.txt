@@ -1,0 +1,7 @@
+2015-07-09:
+    Initial Commit
+    
+2016-01-29:
+    Added AES Encryption Mode CBC, PCBC, CFB, OFB, CTR. ECB was default from last Commit
+    Added AES Encryption Testing Cases for CBC, CFB, OFB, CTR, ECB
+    Fixed a bug in ZCL_RIJNDAEL_UTILITY that only first block is encrypted/decrypted correctly
