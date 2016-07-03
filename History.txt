@@ -1,7 +1,13 @@
 2015-07-09:
     Initial Commit
-    
+
 2016-01-29:
     Added AES Encryption Mode CBC, PCBC, CFB, OFB, CTR. ECB was default from last Commit
     Added AES Encryption Testing Cases for CBC, CFB, OFB, CTR, ECB
     Fixed a bug in ZCL_RIJNDAEL_UTILITY that only first block is encrypted/decrypted correctly
+
+2016-07-02:
+    Added Utility for padding PKCS #5 and PKCS #7
+    Modified AES Interface to accept user selected padding standard (for now, only PKCS #7). The interface is backward compatible, and the default padding is no padding (Encryption: Add '00' to full block; Decryption: Nothing).
+    Re-factored codes to use ABAP table instead of xstring for intermittent storage, and hopefull this will increase the performance a little bit.
+    Added several more testing cases to cover part of the PKCS #7 and encryption mode combination (Only ECB, CBC and CTR for now).

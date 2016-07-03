@@ -1,3 +1,8 @@
+*----------------------------------------------------------------------*
+*       CLASS zcl_aes_utility_test DEFINITION
+*----------------------------------------------------------------------*
+*
+*----------------------------------------------------------------------*
 CLASS zcl_aes_utility_test DEFINITION
   PUBLIC
   FINAL
@@ -13,51 +18,111 @@ CLASS zcl_aes_utility_test DEFINITION
 *"* protected components of class ZCL_AES_UTILITY_TEST
 *"* do not include other source files here!!!
   PRIVATE SECTION.
+
 *"* private components of class ZCL_AES_UTILITY_TEST
 *"* do not include other source files here!!!
-
     DATA key TYPE xstring .
     DATA iv TYPE xstring .
     DATA mode TYPE char10 .
     DATA plaintext TYPE xstring .
     DATA ciphertext TYPE xstring .
     DATA test TYPE xstring .
+    DATA padding TYPE char10 .
 
-    METHODS test_ecb_128_encrypt FOR TESTING.
-    METHODS test_ecb_128_decrypt FOR TESTING.
-    METHODS test_ecb_192_encrypt FOR TESTING.
-    METHODS test_ecb_192_decrypt FOR TESTING.
-    METHODS test_ecb_256_encrypt FOR TESTING.
-    METHODS test_ecb_256_decrypt FOR TESTING.
-    METHODS test_cbc_128_encrypt FOR TESTING.
-    METHODS test_cbc_128_decrypt FOR TESTING.
-    METHODS test_cbc_192_encrypt FOR TESTING.
-    METHODS test_cbc_192_decrypt FOR TESTING.
-    METHODS test_cbc_256_encrypt FOR TESTING.
-    METHODS test_cbc_256_decrypt FOR TESTING.
-    METHODS test_cfb_128_encrypt FOR TESTING.
-    METHODS test_cfb_128_decrypt FOR TESTING.
-    METHODS test_cfb_192_encrypt FOR TESTING.
-    METHODS test_cfb_192_decrypt FOR TESTING.
-    METHODS test_cfb_256_encrypt FOR TESTING.
-    METHODS test_cfb_256_decrypt FOR TESTING.
-    METHODS test_ofb_128_encrypt FOR TESTING.
-    METHODS test_ofb_128_decrypt FOR TESTING.
-    METHODS test_ofb_192_encrypt FOR TESTING.
-    METHODS test_ofb_192_decrypt FOR TESTING.
-    METHODS test_ofb_256_encrypt FOR TESTING.
-    METHODS test_ofb_256_decrypt FOR TESTING.
-    METHODS test_ctr_128_encrypt FOR TESTING.
-    METHODS test_ctr_128_decrypt FOR TESTING.
-    METHODS test_ctr_192_encrypt FOR TESTING.
-    METHODS test_ctr_192_decrypt FOR TESTING.
-    METHODS test_ctr_256_encrypt FOR TESTING.
-    METHODS test_ctr_256_decrypt FOR TESTING.
-ENDCLASS.
+    METHODS test_ecb_128_encrypt
+    FOR TESTING .
+    METHODS test_ecb_128_decrypt
+    FOR TESTING .
+    METHODS test_ecb_192_encrypt
+    FOR TESTING .
+    METHODS test_ecb_192_decrypt
+    FOR TESTING .
+    METHODS test_ecb_256_encrypt
+    FOR TESTING .
+    METHODS test_ecb_256_decrypt
+    FOR TESTING .
+    METHODS test_cbc_128_encrypt
+    FOR TESTING .
+    METHODS test_cbc_128_decrypt
+    FOR TESTING .
+    METHODS test_cbc_192_encrypt
+    FOR TESTING .
+    METHODS test_cbc_192_decrypt
+    FOR TESTING .
+    METHODS test_cbc_256_encrypt
+    FOR TESTING .
+    METHODS test_cbc_256_decrypt
+    FOR TESTING .
+    METHODS test_cfb_128_encrypt
+    FOR TESTING .
+    METHODS test_cfb_128_decrypt
+    FOR TESTING .
+    METHODS test_cfb_192_encrypt
+    FOR TESTING .
+    METHODS test_cfb_192_decrypt
+    FOR TESTING .
+    METHODS test_cfb_256_encrypt
+    FOR TESTING .
+    METHODS test_cfb_256_decrypt
+    FOR TESTING .
+    METHODS test_ofb_128_encrypt
+    FOR TESTING .
+    METHODS test_ofb_128_decrypt
+    FOR TESTING .
+    METHODS test_ofb_192_encrypt
+    FOR TESTING .
+    METHODS test_ofb_192_decrypt
+    FOR TESTING .
+    METHODS test_ofb_256_encrypt
+    FOR TESTING .
+    METHODS test_ofb_256_decrypt
+    FOR TESTING .
+    METHODS test_ctr_128_encrypt
+    FOR TESTING .
+    METHODS test_ctr_128_decrypt
+    FOR TESTING .
+    METHODS test_ctr_192_encrypt
+    FOR TESTING .
+    METHODS test_ctr_192_decrypt
+    FOR TESTING .
+    METHODS test_ctr_256_encrypt
+    FOR TESTING .
+    METHODS test_ctr_256_decrypt
+    FOR TESTING .
+    METHODS test_cbc_128_pkcs7_encrypt
+    FOR TESTING .
+    METHODS test_cbc_128_pkcs7_decrypt
+    FOR TESTING .
+    METHODS test_ecb_128_pkcs7_encrypt
+    FOR TESTING .
+    METHODS test_ecb_128_pkcs7_decrypt
+    FOR TESTING .
+    METHODS test_ctr_128_pkcs7_encrypt
+    FOR TESTING .
+    METHODS test_ctr_128_pkcs7_decrypt
+    FOR TESTING .
+    METHODS test_cbc_128_none_encrypt
+    FOR TESTING .
+    METHODS test_cbc_128_none_decrypt
+    FOR TESTING .
+    METHODS test_ecb_128_none_encrypt
+    FOR TESTING .
+    METHODS test_ecb_128_none_decrypt
+    FOR TESTING .
+    METHODS test_ctr_128_none_encrypt
+    FOR TESTING .
+    METHODS test_ctr_128_none_decrypt
+    FOR TESTING .
+ENDCLASS.                    "zcl_aes_utility_test DEFINITION
 
 
 
-CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
+*----------------------------------------------------------------------*
+*       CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION
+*----------------------------------------------------------------------*
+*
+*----------------------------------------------------------------------*
+CLASS zcl_aes_utility_test IMPLEMENTATION.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
@@ -108,6 +173,238 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
 
   ENDMETHOD.                    "test_cbc_128_encrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_NONE_DECRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_cbc_128_none_decrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
+    padding     = zcl_aes_utility=>mc_padding_standard_none.
+
+    plaintext   = ''.
+    ciphertext  = ''.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC10000000000000000000000000000'.
+    ciphertext  = 'B32191BE73A0734F9860F492DB27BD70'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D0000000000000000000000000000'.
+    ciphertext  = '7649ABAC8119B246CEE98E9B12E9197DE8E3BF84D5F1949C956D94ED33C36F85'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+  ENDMETHOD.                    "test_cbc_128_none_decrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_NONE_ENCRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_cbc_128_none_encrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
+    padding     = zcl_aes_utility=>mc_padding_standard_none.
+
+    plaintext   = ''.
+    ciphertext  = ''.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = 'B32191BE73A0734F9860F492DB27BD70'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '7649ABAC8119B246CEE98E9B12E9197DE8E3BF84D5F1949C956D94ED33C36F85'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+  ENDMETHOD.                    "test_cbc_128_none_encrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_PKCS7_DECRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_cbc_128_pkcs7_decrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
+    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+
+    plaintext   = ''.
+    ciphertext  = 'C84AF0B613435D5D9182801A9BD9320B'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = 'A727B3BFAEC6ED7521595FB326CDF5CA'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '7649ABAC8119B246CEE98E9B12E9197D813A1616DA05E0FEC242A20F1C5B77AA'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+  ENDMETHOD.                    "test_cbc_128_pkcs7_decrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_PKCS7_ENCRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_cbc_128_pkcs7_encrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
+    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+
+    plaintext   = ''.
+    ciphertext  = 'C84AF0B613435D5D9182801A9BD9320B'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = 'A727B3BFAEC6ED7521595FB326CDF5CA'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '7649ABAC8119B246CEE98E9B12E9197D813A1616DA05E0FEC242A20F1C5B77AA'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+  ENDMETHOD.                    "test_cbc_128_pkcs7_encrypt
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
@@ -411,6 +708,238 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_NONE_DECRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_ctr_128_none_decrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_ctr.
+    padding     = zcl_aes_utility=>mc_padding_standard_none.
+
+    plaintext   = ''.
+    ciphertext  = ''.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC10000000000000000000000000000'.
+    ciphertext  = '3B3F67CC996D32B6DA0937E99BAFEC60'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D0000000000000000000000000000'.
+    ciphertext  = '3B3FD92EB72DAD20333449F8E83CFB4A010C8E4E87E393AADA314BE47BF7A35F'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+  ENDMETHOD.                    "test_ctr_128_none_decrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_NONE_ENCRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_ctr_128_none_encrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_ctr.
+    padding     = zcl_aes_utility=>mc_padding_standard_none.
+
+    plaintext   = ''.
+    ciphertext  = ''.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = '3B3F67CC996D32B6DA0937E99BAFEC60'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '3B3FD92EB72DAD20333449F8E83CFB4A010C8E4E87E393AADA314BE47BF7A35F'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+  ENDMETHOD.                    "test_ctr_128_none_encrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_PKCS7_DECRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_ctr_128_pkcs7_decrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_ctr.
+    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+
+    plaintext   = ''.
+    ciphertext  = '40EE77DC897D22A6CA1927F98BBFFC70'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = '3B3F69C297633CB8D40739E795A1E26E'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '3B3FD92EB72DAD20333449F8E83CFB4A010C804089ED9DA4D43F45EA75F9AD51'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+  ENDMETHOD.                    "test_ctr_128_pkcs7_decrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_PKCS7_ENCRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_ctr_128_pkcs7_encrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_ctr.
+    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+
+    plaintext   = ''.
+    ciphertext  = '40EE77DC897D22A6CA1927F98BBFFC70'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = '3B3F69C297633CB8D40739E795A1E26E'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '3B3FD92EB72DAD20333449F8E83CFB4A010C804089ED9DA4D43F45EA75F9AD51'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+  ENDMETHOD.                    "test_ctr_128_pkcs7_encrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_192_DECRYPT
 * +-------------------------------------------------------------------------------------------------+
 * +--------------------------------------------------------------------------------------</SIGNATURE>
@@ -578,6 +1107,234 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
 
   ENDMETHOD.                    "test_ecb_128_encryption
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_NONE_DECRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_ecb_128_none_decrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
+    padding     = zcl_aes_utility=>mc_padding_standard_none.
+
+    plaintext   = ''.
+    ciphertext  = ''.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC10000000000000000000000000000'.
+    ciphertext  = 'A40AB377966BAE2F190D0183A0565DD8'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D0000000000000000000000000000'.
+    ciphertext  = '3AD77BB40D7A3660A89ECAF32466EF975EA06D0C199A4F545F30C4F7DB97AD93'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+  ENDMETHOD.                    "test_ecb_128_none_decrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_NONE_ENCRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_ecb_128_none_encrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
+    padding     = zcl_aes_utility=>mc_padding_standard_none.
+
+    plaintext   = ''.
+    ciphertext  = ''.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = 'A40AB377966BAE2F190D0183A0565DD8'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '3AD77BB40D7A3660A89ECAF32466EF975EA06D0C199A4F545F30C4F7DB97AD93'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+  ENDMETHOD.                    "test_ecb_128_none_encrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_PKCS7_DECRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_ecb_128_pkcs7_decrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
+    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+
+    plaintext   = ''.
+    ciphertext  = 'A254BE88E037DDD9D79FB6411C3F9DF8'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = '3DD9B756926018FAF1FE43AB6545256C'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '3AD77BB40D7A3660A89ECAF32466EF97B23DD7754AAA5B9FFE7D3CC5E7BBD386'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+  ENDMETHOD.                    "test_ecb_128_pkcs7_decrypt
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_PKCS7_ENCRYPT
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD test_ecb_128_pkcs7_encrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
+    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+
+    plaintext   = ''.
+    ciphertext  = 'A254BE88E037DDD9D79FB6411C3F9DF8'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = '3DD9B756926018FAF1FE43AB6545256C'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '3AD77BB40D7A3660A89ECAF32466EF97B23DD7754AAA5B9FFE7D3CC5E7BBD386'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+  ENDMETHOD.                    "test_ecb_128_pkcs7_encrypt
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
@@ -868,4 +1625,4 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
 
   ENDMETHOD.                    "TEST_OFB_256_ENCRYPT
-ENDCLASS.
+ENDCLASS.                    "ZCL_AES_UTILITY_TEST IMPLEMENTATION
