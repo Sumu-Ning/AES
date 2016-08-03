@@ -4,9 +4,9 @@ ABAP Utilities for AES encryption, decryption under MIT License.
 
 Actual Implementation is done by the more generic Rijndael way, and AES is treated as a special case.
 
-Supporting:
-  *Encryption mode: ECB, CBC, PCBC, CFB, OFB, CTR.
-  *Padding standard: No padding, PKCS #7 padding.
+Supporting:  
+  * Encryption mode: ECB, CBC, PCBC, CFB, OFB, CTR.  
+  * Padding standard: No padding, PKCS #7 padding.  
 
 Please just copy the source code file into ABAP editor (Source Code-Based mode), and activate it.
 
