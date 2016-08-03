@@ -21,7 +21,7 @@ Classes:
   * ZCL_BYTE_PADDING_UTILITY: Abstract class for Byte padding utilities, including factory method to get concrete class instances.  
   * ZCL_PADDING_UTILITY_NONE: No padding.  
   * ZCL_PADDING_UTILITY_PKCS_5: Padding using PKCS #5.  
-  * ZCL_PADDING_UTILITY_PKCS_7: Padding using PKCS #5.  
+  * ZCL_PADDING_UTILITY_PKCS_7: Padding using PKCS #7.  
   * ZCL_RIJNDAEL_UTILITY: implementation of Rijndael, encrypt and decrypt using xstring.  
   * ZCL_AES_UTILITY: AES wrapper on ZCL_RIJNDAEL_UTILITY, just need to provide key and data.  
   * ZCL_AES_UTILITY_TEST:   
