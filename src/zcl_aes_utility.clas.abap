@@ -26,7 +26,7 @@ CLASS zcl_aes_utility DEFINITION
     CONSTANTS mc_padding_standard_none TYPE char10 VALUE 'NONE'. "#EC NOTEXT
     CONSTANTS mc_padding_standard_pkcs_7 TYPE char10 VALUE 'PKCS7'. "#EC NOTEXT
     CLASS-DATA:
-      mt_raw16 TYPE TABLE OF raw16 .
+      mt_raw16 TYPE TABLE OF zif_aes_mode=>ty_raw16 .
 
     CLASS-METHODS is_valid_key_xstring
       IMPORTING
@@ -147,25 +147,13 @@ CLASS zcl_aes_utility DEFINITION
   PRIVATE SECTION.
 *"* private components of class ZCL_AES_UTILITY
 *"* do not include other source files here!!!
-ENDCLASS.                    "zcl_aes_utility DEFINITION
+ENDCLASS.
 
 
 
-*----------------------------------------------------------------------*
-*       CLASS ZCL_AES_UTILITY IMPLEMENTATION
-*----------------------------------------------------------------------*
-*
-*----------------------------------------------------------------------*
-CLASS zcl_aes_utility IMPLEMENTATION.
+CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>ADD_PADDING_RAW16_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_DATA_LENGTH_IN_BYTE          TYPE        INT4
-* | [--->] IO_PADDING_UTILITY             TYPE REF TO ZCL_BYTE_PADDING_UTILITY
-* | [<-->] CT_DATA                        LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD add_padding_raw16_table.
     DATA: lv_last_line_length       TYPE int4,
           lv_last_line_number       TYPE int4,
@@ -173,7 +161,7 @@ CLASS zcl_aes_utility IMPLEMENTATION.
           lv_line_after_padding     TYPE xstring,
           lv_padding_length_in_byte TYPE int4.
 
-    FIELD-SYMBOLS: <raw16>          TYPE raw16.
+    FIELD-SYMBOLS: <raw16>          TYPE zif_aes_mode=>ty_raw16.
 
     lv_last_line_length = i_data_length_in_byte MOD mc_block_length_in_byte.
 
@@ -211,16 +199,9 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "add_padding_raw16_table
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>CONVERT_RAW16_TABLE_TO_XSTRING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_DATA_LENGTH_IN_BYTE          TYPE        INT4
-* | [--->] IT_RAW16_TABLE                 LIKE        MT_RAW16
-* | [<---] E_DATA                         TYPE        XSTRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD convert_raw16_table_to_xstring.
     DATA: lv_last_line_length   TYPE int4.
-    FIELD-SYMBOLS: <raw16>      TYPE raw16.
+    FIELD-SYMBOLS: <raw16>      TYPE zif_aes_mode=>ty_raw16.
 
     CLEAR e_data.
 
@@ -242,20 +223,13 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "convert_raw16_table_to_xstring
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>CONVERT_XSTRING_TO_RAW16_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_DATA                         TYPE        XSTRING
-* | [<---] E_DATA_LENGTH_IN_BYTE          TYPE        INT4
-* | [<---] ET_RAW16_TABLE                 LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD convert_xstring_to_raw16_table.
     DATA: lv_input_length       TYPE int4,
           lv_number_of_blocks   TYPE int4,
           lv_block_cursor       TYPE int4,
           lv_offset             TYPE int4.
 
-    FIELD-SYMBOLS: <raw16>      TYPE raw16.
+    FIELD-SYMBOLS: <raw16>      TYPE zif_aes_mode=>ty_raw16.
 
     CLEAR et_raw16_table.
 
@@ -282,17 +256,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "convert_xstring_to_raw16_table
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>DECRYPT_RAW16_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING
-* | [--->] I_ENCRYPTION_MODE              TYPE        CHAR10
-* | [--->] I_PADDING_STANDARD             TYPE        CHAR10
-* | [--->] IT_DATA                        LIKE        MT_RAW16
-* | [<---] E_DATA_LENGTH_IN_BYTE          TYPE        INT4
-* | [<---] ET_DATA                        LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD decrypt_raw16_table.
     DATA: rijndael                TYPE REF TO zcl_rijndael_utility.
     DATA: padding_utility         TYPE REF TO zcl_byte_padding_utility.
@@ -333,16 +296,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "DECRYPT_RAW16_TABLE
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>DECRYPT_XSTRING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_DATA                         TYPE        XSTRING
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING(optional)
-* | [--->] I_PADDING_STANDARD             TYPE        CHAR10(optional)
-* | [--->] I_ENCRYPTION_MODE              TYPE        CHAR10(optional)
-* | [<---] E_DATA                         TYPE        XSTRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD decrypt_xstring.
     DATA: lt_plain_raw16            LIKE mt_raw16,
           lt_cipher_raw16           LIKE mt_raw16,
@@ -380,17 +333,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "decrypt_xstring
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>ENCRYPT_RAW16_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING(optional)
-* | [--->] I_ENCRYPTION_MODE              TYPE        CHAR10(optional)
-* | [--->] I_PADDING_STANDARD             TYPE        CHAR10(optional)
-* | [--->] I_DATA_LENGTH_IN_BYTE          TYPE        INT4
-* | [<---] ET_DATA                        LIKE        MT_RAW16
-* | [<-->] CT_DATA                        LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD encrypt_raw16_table.
     DATA: rijndael                TYPE REF TO zcl_rijndael_utility.
     DATA: padding_utility         TYPE REF TO zcl_byte_padding_utility.
@@ -435,16 +377,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "encrypt_raw16_table
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>ENCRYPT_XSTRING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_DATA                         TYPE        XSTRING
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING(optional)
-* | [--->] I_PADDING_STANDARD             TYPE        CHAR10(optional)
-* | [--->] I_ENCRYPTION_MODE              TYPE        CHAR10(optional)
-* | [<---] E_DATA                         TYPE        XSTRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD encrypt_xstring.
     DATA: lt_plain_raw16            LIKE mt_raw16,
           lt_cipher_raw16           LIKE mt_raw16,
@@ -484,12 +416,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "encrypt_xstring
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_AES_UTILITY=>GET_AES_MODE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_ENCRYPTION_MODE              TYPE        CHAR10
-* | [<-()] R_AES_MODE                     TYPE REF TO ZIF_AES_MODE
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get_aes_mode.
     CASE i_encryption_mode.
       WHEN space OR mc_encryption_mode_ecb.
@@ -533,12 +459,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "get_aes_mode
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_AES_UTILITY=>GET_PADDING_UTILITY
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_PADDING_STANDARD             TYPE        CHAR10(optional)
-* | [<-()] R_PADDING_UTILITY              TYPE REF TO ZCL_BYTE_PADDING_UTILITY
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get_padding_utility.
     CASE i_padding_standard.
       WHEN space OR zcl_byte_padding_utility=>mc_padding_standard_none.
@@ -557,12 +477,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "get_padding_utility
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_AES_UTILITY=>GET_RIJNDAEL
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [<-()] R_RAJNDAEL                     TYPE REF TO ZCL_RIJNDAEL_UTILITY
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get_rijndael.
     DATA: key_length_in_bit   TYPE int4.
 
@@ -611,12 +525,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "get_rijndael
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>IS_VALID_IV_XSTRING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING
-* | [<-()] R_VALID                        TYPE        BOOLE_D
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD is_valid_iv_xstring.
     DATA: iv_length_in_bit   TYPE int4.
 
@@ -629,12 +537,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "is_valid_iv_xstring
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>IS_VALID_KEY_XSTRING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [<-()] R_VALID                        TYPE        BOOLE_D
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD is_valid_key_xstring.
     DATA: key_length_in_bit   TYPE int4.
 
@@ -649,13 +551,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "is_valid_key_xstring
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>REMOVE_PADDING_RAW16_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IO_PADDING_UTILITY             TYPE REF TO ZCL_BYTE_PADDING_UTILITY
-* | [<---] E_DATA_LENGTH_IN_BYTE          TYPE        INT4
-* | [<-->] CT_DATA                        LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD remove_padding_raw16_table.
     DATA: lv_last_line_length       TYPE int4,
           lv_padding_length         TYPE int4,
@@ -663,7 +558,7 @@ CLASS zcl_aes_utility IMPLEMENTATION.
           lv_line_before_padding    TYPE xstring,
           lv_line_after_padding     TYPE xstring.
 
-    FIELD-SYMBOLS: <raw16>          TYPE raw16.
+    FIELD-SYMBOLS: <raw16>          TYPE zif_aes_mode=>ty_raw16.
 
     CLEAR e_data_length_in_byte.
 
@@ -694,12 +589,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "remove_padding_raw16_table
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>VALIDATE_ENCRYPTION_MODE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING(optional)
-* | [--->] I_ENCRYPTION_MODE              TYPE        CHAR10(optional)
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD validate_encryption_mode.
 
     IF i_encryption_mode = mc_encryption_mode_cbc
@@ -729,11 +618,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "validate_encryption_mode
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>VALIDATE_PADDING_STANDARD
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_PADDING_STANDARD             TYPE        CHAR10(optional)
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD validate_padding_standard.
 
     IF  i_padding_standard IS NOT INITIAL AND
@@ -750,12 +634,6 @@ CLASS zcl_aes_utility IMPLEMENTATION.
   ENDMETHOD.                    "validate_padding_standard
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_AES_UTILITY=>VALIDATE_RAW16_TABLE_SIZE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_DATA_LENGTH_IN_BYTE          TYPE        INT4
-* | [--->] IT_DATA                        LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD validate_raw16_table_size.
     DATA: lv_line_of_raw16_table  TYPE int4.
 
@@ -772,4 +650,4 @@ CLASS zcl_aes_utility IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.                    "validate_raw16_table_size
-ENDCLASS.                    "ZCL_AES_UTILITY IMPLEMENTATION
+ENDCLASS.

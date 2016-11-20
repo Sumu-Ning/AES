@@ -18,24 +18,13 @@ CLASS zcl_aes_mode_ctr DEFINITION
       RETURNING
         value(r_data) TYPE xstring .
   PRIVATE SECTION.
-ENDCLASS.                    "ZCL_AES_MODE_CTR DEFINITION
+ENDCLASS.
 
 
 
-*----------------------------------------------------------------------*
-*       CLASS ZCL_AES_MODE_CTR IMPLEMENTATION
-*----------------------------------------------------------------------*
-*
-*----------------------------------------------------------------------*
-CLASS zcl_aes_mode_ctr IMPLEMENTATION.
+CLASS ZCL_AES_MODE_CTR IMPLEMENTATION.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_AES_MODE_CTR->GET_COUNTER_INCREMENT
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_DATA                         TYPE        XSTRING
-* | [<-()] R_DATA                         TYPE        XSTRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get_counter_increment.
     DATA: offset          TYPE int4,
           length          TYPE int4,
@@ -63,15 +52,6 @@ CLASS zcl_aes_mode_ctr IMPLEMENTATION.
   ENDMETHOD.                    "get_counter_increment
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_AES_MODE_CTR->ZIF_AES_MODE~DECRYPT_RAW16_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IO_RIJNDAEL                    TYPE REF TO ZCL_RIJNDAEL_UTILITY
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING
-* | [--->] IT_DATA                        LIKE        MT_RAW16
-* | [<---] ET_DATA                        LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD zif_aes_mode~decrypt_raw16_table.
     DATA: converter_block         TYPE xstring,
           origin_plain_block      TYPE xstring,
@@ -79,7 +59,7 @@ CLASS zcl_aes_mode_ctr IMPLEMENTATION.
           working_cipher_block    TYPE xstring,
           converted_plain_block   TYPE xstring.
 
-    FIELD-SYMBOLS:  <raw16>       TYPE raw16.
+    FIELD-SYMBOLS:  <raw16>       TYPE zif_aes_mode=>ty_raw16.
 
     working_plain_block = i_initialization_vector.
 
@@ -104,15 +84,6 @@ CLASS zcl_aes_mode_ctr IMPLEMENTATION.
   ENDMETHOD.                    "zif_aes_mode~decrypt_raw16_table
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_AES_MODE_CTR->ZIF_AES_MODE~ENCRYPT_RAW16_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IO_RIJNDAEL                    TYPE REF TO ZCL_RIJNDAEL_UTILITY
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING
-* | [--->] IT_DATA                        LIKE        MT_RAW16
-* | [<---] ET_DATA                        LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD zif_aes_mode~encrypt_raw16_table.
     DATA: converter_block         TYPE xstring,
           origin_plain_block      TYPE xstring,
@@ -120,7 +91,7 @@ CLASS zcl_aes_mode_ctr IMPLEMENTATION.
           working_cipher_block    TYPE xstring,
           converted_plain_block   TYPE xstring.
 
-    FIELD-SYMBOLS:  <raw16>       TYPE raw16.
+    FIELD-SYMBOLS:  <raw16>       TYPE zif_aes_mode=>ty_raw16.
 
     working_plain_block = i_initialization_vector.
 
@@ -143,4 +114,4 @@ CLASS zcl_aes_mode_ctr IMPLEMENTATION.
     ENDLOOP.
 
   ENDMETHOD.                    "zif_aes_mode~encrypt_raw16_table
-ENDCLASS.                    "ZCL_AES_MODE_CTR IMPLEMENTATION
+ENDCLASS.

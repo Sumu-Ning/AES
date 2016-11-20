@@ -232,15 +232,6 @@ ENDCLASS.
 CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->ARRAY_COPY
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_SOURCE                       LIKE        MT_X
-* | [--->] I_START_INDEX                  TYPE        INT4
-* | [--->] I_END_INDEX                    TYPE        INT4
-* | [--->] I_DEST_START_INDEX             TYPE        INT4 (default =1)
-* | [<-->] C_DESTINATION                  LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD array_copy.
     DATA: dest_cursor       TYPE int4.
     FIELD-SYMBOLS:  <fs_x>  TYPE x.
@@ -254,11 +245,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "array_copy
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->ARRAY_MIX_COLUMNS
-* +-------------------------------------------------------------------------------------------------+
-* | [<-->] C_ARRAY                        LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD array_mix_columns.
     DATA: array_length_in_word  TYPE int4,
           cursor                TYPE int4,
@@ -296,11 +282,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "array_mix_columns
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->ARRAY_MIX_COLUMNS_INV
-* +-------------------------------------------------------------------------------------------------+
-* | [<-->] C_ARRAY                        LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD array_mix_columns_inv.
     DATA: array_length_in_word  TYPE int4,
           cursor                TYPE int4,
@@ -338,13 +319,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "array_mix_columns_inv
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->ARRAY_SBOX
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_START_INDEX                  TYPE        INT4(optional)
-* | [--->] I_END_INDEX                    TYPE        INT4(optional)
-* | [<-->] C_DATA                         LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD array_sbox.
     DATA: start_index       TYPE int4,
           end_index         TYPE int4,
@@ -376,13 +350,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "ARRAY_SBOX
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->ARRAY_SBOX_INV
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_START_INDEX                  TYPE        INT4(optional)
-* | [--->] I_END_INDEX                    TYPE        INT4(optional)
-* | [<-->] C_DATA                         LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD array_sbox_inv.
     DATA: start_index       TYPE int4,
           end_index         TYPE int4,
@@ -414,11 +381,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "ARRAY_SOBX_INV
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->ARRAY_SHIFT_ROWS
-* +-------------------------------------------------------------------------------------------------+
-* | [<-->] C_ARRAY                        LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD array_shift_rows.
     DATA: array_length_in_byte    TYPE int4,
           number_of_blocks        TYPE int4,
@@ -486,11 +448,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "array_shift_rows
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->ARRAY_SHIFT_ROWS_INV
-* +-------------------------------------------------------------------------------------------------+
-* | [<-->] C_ARRAY                        LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD array_shift_rows_inv.
     DATA: array_length_in_byte    TYPE int4,
           number_of_blocks        TYPE int4,
@@ -543,15 +500,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "array_shift_rows_inv
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->ARRAY_XOR
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_ARRAY                        LIKE        MT_X
-* | [--->] I_I_ARRAY_START_INDEX          TYPE        INT4
-* | [--->] I_C_ARRAY_START_INDEX          TYPE        INT4
-* | [--->] I_LENGTH_BY_BYTE               TYPE        INT4
-* | [<-->] C_ARRAY                        LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD array_xor.
     DATA: i_array_cursor            TYPE int4.
     FIELD-SYMBOLS:  <fs_i_array>    TYPE x,
@@ -567,12 +515,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "array_xor
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->CALCULATE_ROUND_KEY_ARRAY
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [<---] E_ROUND_KEY_ARRAY              LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD calculate_round_key_array.
     DATA: cursor              TYPE int4,
           temp_word           TYPE TABLE OF x,
@@ -652,10 +594,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "calculate_round_key_array
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_RIJNDAEL_UTILITY=>CLASS_CONSTRUCTOR
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD class_constructor.
     "Build lookup for Subbyte conversion
     _build_sbox( ).
@@ -673,12 +611,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "class_constructor
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_RIJNDAEL_UTILITY->CONSTRUCTOR
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY_LENGTH_IN_BIT            TYPE        INT4
-* | [--->] I_BLOCK_LENGTH_IN_BIT          TYPE        INT4
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD constructor.
     IF i_key_length_in_bit <> mc_length_in_bit_128
         AND i_key_length_in_bit <> mc_length_in_bit_160
@@ -735,14 +667,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "constructor
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->CONVERT_ARRAY_TO_XSTRING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_ARRAY                        LIKE        MT_X
-* | [--->] I_START_INDEX                  TYPE        INT4(optional)
-* | [--->] I_END_INDEX                    TYPE        INT4(optional)
-* | [<---] E_XSTRING                      TYPE        XSTRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD convert_array_to_xstring.
     DATA: start_index   TYPE int4,
           end_index     TYPE int4.
@@ -769,13 +693,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "convert_array_to_xstring
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_RIJNDAEL_UTILITY->CONVERT_XSTRING_TO_ARRAY
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_XSTRING                      TYPE        XSTRING
-* | [--->] I_LENGTH_IN_BYTE               TYPE        INT4(optional)
-* | [<---] E_ARRAY                        LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD convert_xstring_to_array.
     DATA: xstring_length_in_byte  TYPE int4,
           cursor                  TYPE int4.
@@ -799,13 +716,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "convert_xstring_to_xarray
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_RIJNDAEL_UTILITY->DECRYPT_XSTRING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_DATA                         TYPE        XSTRING
-* | [<---] E_DATA                         TYPE        XSTRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD decrypt_xstring.
     DATA: data_length_in_byte TYPE int4,
           number_of_blocks    TYPE int4,
@@ -934,13 +844,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "ENCRYPT_XSTRING
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_RIJNDAEL_UTILITY->ENCRYPT_XSTRING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_DATA                         TYPE        XSTRING
-* | [<---] E_DATA                         TYPE        XSTRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD encrypt_xstring.
     DATA: data_length_in_byte TYPE int4,
           number_of_blocks    TYPE int4,
@@ -1068,12 +971,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "ENCRYPT_XSTRING
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_RIJNDAEL_UTILITY->IS_VALID_KEY_XSTRING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [<-()] R_VALID                        TYPE        BOOLE_D
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD is_valid_key_xstring.
     IF xstrlen( i_key ) = m_key_length_in_byte.
       r_valid = abap_true.
@@ -1083,10 +980,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "IS_VALID_KEY
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method ZCL_RIJNDAEL_UTILITY=>_BUILD_MULTIPLICATION
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _build_multiplication.
     "Build Multiplication Table for 2
     APPEND '00' TO mt_multiplication_lookup_2.
@@ -2639,10 +2532,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_build_multiplication
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method ZCL_RIJNDAEL_UTILITY=>_BUILD_RCON
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _build_rcon.
     APPEND '8D' TO mt_rcon.
     APPEND '01' TO mt_rcon.
@@ -2903,10 +2792,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_build_rcon
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method ZCL_RIJNDAEL_UTILITY=>_BUILD_ROW_SHIFT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _build_row_shift.
     "Block length 4 word
     APPEND  1 TO mt_row_shift_4.
@@ -3041,10 +2926,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_build_row_shift
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method ZCL_RIJNDAEL_UTILITY=>_BUILD_ROW_SHIFT_INV
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _build_row_shift_inv.
     "Block length 4 word
     APPEND  1 TO mt_row_shift_4_inv.
@@ -3179,10 +3060,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_build_row_shift_inv
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method ZCL_RIJNDAEL_UTILITY=>_BUILD_SBOX
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _build_sbox.
     APPEND '63' TO mt_sbox.
     APPEND '7C' TO mt_sbox.
@@ -3443,10 +3320,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_build_sbox
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method ZCL_RIJNDAEL_UTILITY=>_BUILD_SBOX_INV
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _build_sbox_inv.
     APPEND '52' TO mt_sbox_inv.
     APPEND '09' TO mt_sbox_inv.
@@ -3707,12 +3580,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_build_sbox_inv
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_RIJNDAEL_UTILITY=>_GET_MULTIPLICATION_11
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_X                            TYPE        X
-* | [<-()] R_X                            TYPE        HEXTYP
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _get_multiplication_11.
     DATA: lookup_index    TYPE int1.
     lookup_index = i_x.
@@ -3720,12 +3587,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_GET_MULTIPLICATION_11
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_RIJNDAEL_UTILITY=>_GET_MULTIPLICATION_13
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_X                            TYPE        X
-* | [<-()] R_X                            TYPE        HEXTYP
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _get_multiplication_13.
     DATA: lookup_index    TYPE int1.
     lookup_index = i_x.
@@ -3733,12 +3594,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_GET_MULTIPLICATION_13
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_RIJNDAEL_UTILITY=>_GET_MULTIPLICATION_14
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_X                            TYPE        X
-* | [<-()] R_X                            TYPE        HEXTYP
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _get_multiplication_14.
     DATA: lookup_index    TYPE int1.
     lookup_index = i_x.
@@ -3746,12 +3601,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_get_multiplication_14
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_RIJNDAEL_UTILITY=>_GET_MULTIPLICATION_2
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_X                            TYPE        X
-* | [<-()] R_X                            TYPE        HEXTYP
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _get_multiplication_2.
     DATA: lookup_index    TYPE int1.
     lookup_index = i_x.
@@ -3759,12 +3608,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_get_multiplication_2
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_RIJNDAEL_UTILITY=>_GET_MULTIPLICATION_3
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_X                            TYPE        X
-* | [<-()] R_X                            TYPE        HEXTYP
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _get_multiplication_3.
     DATA: lookup_index    TYPE int1.
     lookup_index = i_x.
@@ -3772,12 +3615,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_GET_MULTIPLICATION_3
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_RIJNDAEL_UTILITY=>_GET_MULTIPLICATION_9
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_X                            TYPE        X
-* | [<-()] R_X                            TYPE        HEXTYP
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _get_multiplication_9.
     DATA: lookup_index    TYPE int1.
     lookup_index = i_x.
@@ -3785,12 +3622,6 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "_GET_MULTIPLICATION_9
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_RIJNDAEL_UTILITY=>_RCON
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_NUMBER                       TYPE        INT4
-* | [<---] E_ARRAY                        LIKE        MT_X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _rcon.
     DATA: temp    TYPE x.
 
@@ -3805,21 +3636,11 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "rcon
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_RIJNDAEL_UTILITY=>_SBOX
-* +-------------------------------------------------------------------------------------------------+
-* | [<-->] C_X                            TYPE        X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _sbox.
     READ TABLE mt_sbox INDEX c_x + 1 INTO c_x.
   ENDMETHOD.                    "sbox
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Protected Method ZCL_RIJNDAEL_UTILITY=>_SBOX_INV
-* +-------------------------------------------------------------------------------------------------+
-* | [<-->] C_X                            TYPE        X
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD _sbox_inv.
     READ TABLE mt_sbox_inv INDEX c_x + 1 INTO c_x.
   ENDMETHOD.                    "sbox_inv

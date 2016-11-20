@@ -23,27 +23,13 @@ CLASS zcl_padding_utility_pkcs_7 DEFINITION
       REDEFINITION .
   PROTECTED SECTION.
   PRIVATE SECTION.
-ENDCLASS.                    "ZCL_PADDING_UTILITY_PKCS_7 DEFINITION
+ENDCLASS.
 
 
 
-*----------------------------------------------------------------------*
-*       CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION
-*----------------------------------------------------------------------*
-*
-*----------------------------------------------------------------------*
-CLASS zcl_padding_utility_pkcs_7 IMPLEMENTATION.
+CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_PADDING_UTILITY_PKCS_7->ADD_PADDING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_DATA                         TYPE        XSTRING
-* | [--->] I_BLOCK_LENGTH_IN_BYTE         TYPE        INT4(optional)
-* | [<---] E_PADDING_LENGTH_IN_BYTE       TYPE        INT4
-* | [<---] E_PADDING                      TYPE        XSTRING
-* | [<---] E_DATA                         TYPE        XSTRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD add_padding.
 
     DATA: lv_data_length        TYPE int4,
@@ -67,15 +53,6 @@ CLASS zcl_padding_utility_pkcs_7 IMPLEMENTATION.
   ENDMETHOD.                    "add_padding
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_PADDING_UTILITY_PKCS_7->REMOVE_PADDING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_DATA                         TYPE        XSTRING
-* | [--->] I_BLOCK_LENGTH_IN_BYTE         TYPE        INT4(optional)
-* | [<---] E_PADDING_LENGTH_IN_BYTE       TYPE        INT4
-* | [<---] E_PADDING                      TYPE        XSTRING
-* | [<---] E_DATA                         TYPE        XSTRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD remove_padding.
 
     DATA: lv_data_length        TYPE int4,
@@ -129,11 +106,6 @@ CLASS zcl_padding_utility_pkcs_7 IMPLEMENTATION.
   ENDMETHOD.                    "remove_padding
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_PADDING_UTILITY_PKCS_7->VALIDATE_BLOCK_LENGTH
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] I_BLOCK_LENGTH_IN_BYTE         TYPE        INT4(optional)
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD validate_block_length.
 
     IF  i_block_length_in_byte < mc_block_size_in_byte_min OR
@@ -147,4 +119,4 @@ CLASS zcl_padding_utility_pkcs_7 IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.                    "validate_block_length
-ENDCLASS.                    "ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION
+ENDCLASS.

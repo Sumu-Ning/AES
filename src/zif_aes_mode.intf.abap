@@ -6,9 +6,10 @@
 INTERFACE zif_aes_mode
   PUBLIC .
 
+  types: ty_raw16 type x length 16.
 
   CLASS-DATA:
-    mt_raw16 TYPE TABLE OF raw16 .
+    mt_raw16 TYPE TABLE OF ty_raw16 .
 
   METHODS decrypt_raw16_table
     IMPORTING

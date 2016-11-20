@@ -113,22 +113,13 @@ CLASS zcl_aes_utility_test DEFINITION
     FOR TESTING .
     METHODS test_ctr_128_none_decrypt
     FOR TESTING .
-ENDCLASS.                    "zcl_aes_utility_test DEFINITION
+ENDCLASS.
 
 
 
-*----------------------------------------------------------------------*
-*       CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION
-*----------------------------------------------------------------------*
-*
-*----------------------------------------------------------------------*
-CLASS zcl_aes_utility_test IMPLEMENTATION.
+CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_128_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -150,10 +141,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CBC_128_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_128_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -175,10 +162,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_cbc_128_encrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_NONE_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_128_none_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -233,10 +216,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_cbc_128_none_decrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_NONE_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_128_none_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -291,10 +270,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_cbc_128_none_encrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_PKCS7_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_128_pkcs7_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -349,10 +324,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_cbc_128_pkcs7_decrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_128_PKCS7_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_128_pkcs7_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -407,10 +378,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_cbc_128_pkcs7_encrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_192_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_192_decrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -432,10 +399,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CBC_192_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_192_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_192_encrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -457,10 +420,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CBC_192_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_256_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_256_decrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -482,10 +441,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CBC_256_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CBC_256_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cbc_256_encrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -507,10 +462,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CBC_256_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CFB_128_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cfb_128_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -532,10 +483,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CFB_128_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CFB_128_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cfb_128_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -557,10 +504,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CFB_128_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CFB_192_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cfb_192_decrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -582,10 +525,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CFB_192_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CFB_192_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cfb_192_encrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -607,10 +546,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CFB_192_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CFB_256_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cfb_256_decrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -632,10 +567,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CFB_256_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CFB_256_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_cfb_256_encrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -657,10 +588,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CFB_256_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_128_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = 'F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF'.
@@ -682,10 +609,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CTR_128_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_128_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = 'F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF'.
@@ -707,10 +630,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CTR_128_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_NONE_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_128_none_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -765,10 +684,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ctr_128_none_decrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_NONE_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_128_none_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -823,10 +738,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ctr_128_none_encrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_PKCS7_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_128_pkcs7_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -881,10 +792,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ctr_128_pkcs7_decrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_128_PKCS7_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_128_pkcs7_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -939,10 +846,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ctr_128_pkcs7_encrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_192_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_192_decrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     iv          = 'F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF'.
@@ -964,10 +867,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CTR_192_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_192_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_192_encrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     iv          = 'F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF'.
@@ -989,10 +888,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CTR_192_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_256_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_256_decrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     iv          = 'F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF'.
@@ -1014,10 +909,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CTR_256_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_CTR_256_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ctr_256_encrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     iv          = 'F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF'.
@@ -1039,10 +930,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_CTR_256_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_128_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D8A571E03AC9C9EB76FAC45AF8E5130C81C46A35CE411E5FBC1191A0A52EFF69F2445DF4F9B17AD2B417BE66C3710'.
@@ -1074,10 +961,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_ECB_128_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_128_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D8A571E03AC9C9EB76FAC45AF8E5130C81C46A35CE411E5FBC1191A0A52EFF69F2445DF4F9B17AD2B417BE66C3710'.
@@ -1109,10 +992,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ecb_128_encryption
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_NONE_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_128_none_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
@@ -1166,10 +1045,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ecb_128_none_decrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_NONE_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_128_none_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
@@ -1223,10 +1098,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ecb_128_none_encrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_PKCS7_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_128_pkcs7_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
@@ -1280,10 +1151,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ecb_128_pkcs7_decrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_128_PKCS7_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_128_pkcs7_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
@@ -1337,10 +1204,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ecb_128_pkcs7_encrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_192_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_192_decrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D8A571E03AC9C9EB76FAC45AF8E5130C81C46A35CE411E5FBC1191A0A52EFF69F2445DF4F9B17AD2B417BE66C3710'.
@@ -1372,10 +1235,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_ECB_192_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_192_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_192_encrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D8A571E03AC9C9EB76FAC45AF8E5130C81C46A35CE411E5FBC1191A0A52EFF69F2445DF4F9B17AD2B417BE66C3710'.
@@ -1407,10 +1266,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ecb_192_encrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_256_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_256_decrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D8A571E03AC9C9EB76FAC45AF8E5130C81C46A35CE411E5FBC1191A0A52EFF69F2445DF4F9B17AD2B417BE66C3710'.
@@ -1442,10 +1297,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_ECB_256_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_ECB_256_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ecb_256_encrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D8A571E03AC9C9EB76FAC45AF8E5130C81C46A35CE411E5FBC1191A0A52EFF69F2445DF4F9B17AD2B417BE66C3710'.
@@ -1477,10 +1328,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "test_ecb_256_encrypt
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_OFB_128_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ofb_128_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -1502,10 +1349,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_OFB_128_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_OFB_128_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ofb_128_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -1527,10 +1370,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_OFB_128_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_OFB_192_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ofb_192_decrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -1552,10 +1391,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_OFB_192_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_OFB_192_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ofb_192_encrypt.
     key         = '8E73B0F7DA0E6452C810F32B809079E562F8EAD2522C6B7B'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -1577,10 +1412,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_OFB_192_ENCRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_OFB_256_DECRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ofb_256_decrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -1602,10 +1433,6 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
   ENDMETHOD.                    "TEST_OFB_256_DECRYPT
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Private Method ZCL_AES_UTILITY_TEST->TEST_OFB_256_ENCRYPT
-* +-------------------------------------------------------------------------------------------------+
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD test_ofb_256_encrypt.
     key         = '603DEB1015CA71BE2B73AEF0857D77811F352C073B6108D72D9810A30914DFF4'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
@@ -1625,4 +1452,4 @@ CLASS zcl_aes_utility_test IMPLEMENTATION.
     cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
 
   ENDMETHOD.                    "TEST_OFB_256_ENCRYPT
-ENDCLASS.                    "ZCL_AES_UTILITY_TEST IMPLEMENTATION
+ENDCLASS.

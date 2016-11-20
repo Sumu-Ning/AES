@@ -12,34 +12,20 @@ CLASS zcl_aes_mode_pcbc DEFINITION
     INTERFACES zif_aes_mode .
   PROTECTED SECTION.
   PRIVATE SECTION.
-ENDCLASS.                    "ZCL_AES_MODE_PCBC DEFINITION
+ENDCLASS.
 
 
 
-*----------------------------------------------------------------------*
-*       CLASS ZCL_AES_MODE_PCBC IMPLEMENTATION
-*----------------------------------------------------------------------*
-*
-*----------------------------------------------------------------------*
-CLASS zcl_aes_mode_pcbc IMPLEMENTATION.
+CLASS ZCL_AES_MODE_PCBC IMPLEMENTATION.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_AES_MODE_PCBC->ZIF_AES_MODE~DECRYPT_RAW16_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IO_RIJNDAEL                    TYPE REF TO ZCL_RIJNDAEL_UTILITY
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING
-* | [--->] IT_DATA                        LIKE        MT_RAW16
-* | [<---] ET_DATA                        LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD zif_aes_mode~decrypt_raw16_table.
     DATA: converter_block         TYPE xstring,
           origin_plain_block      TYPE xstring,
           working_plain_block     TYPE xstring,
           working_cipher_block    TYPE xstring.
 
-    FIELD-SYMBOLS:  <raw16>       TYPE raw16.
+    FIELD-SYMBOLS:  <raw16>       TYPE zif_aes_mode=>ty_raw16.
 
     converter_block = i_initialization_vector.
 
@@ -62,22 +48,13 @@ CLASS zcl_aes_mode_pcbc IMPLEMENTATION.
   ENDMETHOD.                    "zif_aes_mode~decrypt_raw16_table
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_AES_MODE_PCBC->ZIF_AES_MODE~ENCRYPT_RAW16_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IO_RIJNDAEL                    TYPE REF TO ZCL_RIJNDAEL_UTILITY
-* | [--->] I_KEY                          TYPE        XSTRING
-* | [--->] I_INITIALIZATION_VECTOR        TYPE        XSTRING
-* | [--->] IT_DATA                        LIKE        MT_RAW16
-* | [<---] ET_DATA                        LIKE        MT_RAW16
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD zif_aes_mode~encrypt_raw16_table.
     DATA: converter_block         TYPE xstring,
           origin_plain_block      TYPE xstring,
           working_plain_block     TYPE xstring,
           working_cipher_block    TYPE xstring.
 
-    FIELD-SYMBOLS:  <raw16>       TYPE raw16.
+    FIELD-SYMBOLS:  <raw16>       TYPE zif_aes_mode=>ty_raw16.
 
     converter_block = i_initialization_vector.
 
@@ -98,4 +75,4 @@ CLASS zcl_aes_mode_pcbc IMPLEMENTATION.
     ENDLOOP.
 
   ENDMETHOD.                    "zif_aes_mode~encrypt_raw16_table
-ENDCLASS.                    "ZCL_AES_MODE_PCBC IMPLEMENTATION
+ENDCLASS.
