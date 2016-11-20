@@ -8,7 +8,7 @@ Supporting:
   * Encryption mode: ECB, CBC, PCBC, CFB, OFB, CTR.  
   * Padding standard: No padding, PKCS #7 padding.  
 
-Please just copy the source code file into ABAP editor (Source Code-Based mode), and activate it.
+Please just copy the source code file into ABAP editor (Source Code-Based mode), and activate it. Or install via [abapGit](http://www.abapgit.org).
 
 Classes:  
   * ZIF_AES_MODE: Interface for different encryption mode.  
