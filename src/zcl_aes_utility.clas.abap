@@ -264,12 +264,10 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
     CLEAR et_data.
 
     validate_encryption_mode(
-      EXPORTING
         i_encryption_mode       = i_encryption_mode
         i_initialization_vector = i_initialization_vector ).
 
     validate_padding_standard(
-      EXPORTING
         i_padding_standard      = i_padding_standard ).
 
     rijndael = get_rijndael( i_key ).
@@ -341,16 +339,13 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
     CLEAR et_data.
 
     validate_encryption_mode(
-      EXPORTING
         i_encryption_mode       = i_encryption_mode
         i_initialization_vector = i_initialization_vector ).
 
     validate_padding_standard(
-      EXPORTING
         i_padding_standard      = i_padding_standard ).
 
     validate_raw16_table_size(
-      EXPORTING
         it_data                 = ct_data
         i_data_length_in_byte   = i_data_length_in_byte ).
 
