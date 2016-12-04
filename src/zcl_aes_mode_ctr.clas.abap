@@ -26,10 +26,13 @@ CLASS ZCL_AES_MODE_CTR IMPLEMENTATION.
 
 
   METHOD get_counter_increment.
-    DATA: offset          TYPE int4,
-          length          TYPE int4,
-          cursor          TYPE x LENGTH 1,
-          one             TYPE x LENGTH 1 VALUE '01'.
+
+    CONSTANTS: zero TYPE x LENGTH 1 VALUE '00',
+               one  TYPE x LENGTH 1 VALUE '01'.
+
+    DATA: offset TYPE int4,
+          length TYPE int4,
+          cursor TYPE x LENGTH 1.
 
     length = xstrlen( i_data ).
     offset = length - 1.
@@ -38,7 +41,7 @@ CLASS ZCL_AES_MODE_CTR IMPLEMENTATION.
       cursor = cursor + one.
       r_data = cursor && r_data.
 
-      IF cursor <> '00'.
+      IF cursor <> zero.
         EXIT.
       ENDIF.
 
@@ -53,13 +56,16 @@ CLASS ZCL_AES_MODE_CTR IMPLEMENTATION.
 
 
   METHOD zif_aes_mode~decrypt_raw16_table.
-    DATA: converter_block         TYPE xstring,
-          origin_plain_block      TYPE xstring,
-          working_plain_block     TYPE xstring,
-          working_cipher_block    TYPE xstring,
-          converted_plain_block   TYPE xstring.
+    DATA: converter_block       TYPE xstring,
+          origin_plain_block    TYPE xstring,
+          working_plain_block   TYPE xstring,
+          working_cipher_block  TYPE xstring,
+          converted_plain_block TYPE xstring.
 
     FIELD-SYMBOLS:  <raw16>       TYPE zif_aes_mode=>ty_raw16.
+
+
+    CLEAR et_data.
 
     working_plain_block = i_initialization_vector.
 
@@ -85,13 +91,16 @@ CLASS ZCL_AES_MODE_CTR IMPLEMENTATION.
 
 
   METHOD zif_aes_mode~encrypt_raw16_table.
-    DATA: converter_block         TYPE xstring,
-          origin_plain_block      TYPE xstring,
-          working_plain_block     TYPE xstring,
-          working_cipher_block    TYPE xstring,
-          converted_plain_block   TYPE xstring.
+    DATA: converter_block       TYPE xstring,
+          origin_plain_block    TYPE xstring,
+          working_plain_block   TYPE xstring,
+          working_cipher_block  TYPE xstring,
+          converted_plain_block TYPE xstring.
 
     FIELD-SYMBOLS:  <raw16>       TYPE zif_aes_mode=>ty_raw16.
+
+
+    CLEAR et_data.
 
     working_plain_block = i_initialization_vector.
 

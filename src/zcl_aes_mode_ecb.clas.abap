@@ -20,10 +20,12 @@ CLASS ZCL_AES_MODE_ECB IMPLEMENTATION.
 
 
   METHOD zif_aes_mode~decrypt_raw16_table.
-    DATA: working_plain_block     TYPE xstring,
-          working_cipher_block    TYPE xstring.
+    DATA: working_plain_block  TYPE xstring,
+          working_cipher_block TYPE xstring.
 
     FIELD-SYMBOLS:  <raw16>       TYPE zif_aes_mode=>ty_raw16.
+
+    CLEAR et_data.
 
     LOOP AT it_data INTO working_cipher_block.
       io_rijndael->decrypt_xstring(
@@ -41,10 +43,13 @@ CLASS ZCL_AES_MODE_ECB IMPLEMENTATION.
 
 
   METHOD zif_aes_mode~encrypt_raw16_table.
-    DATA: working_plain_block     TYPE xstring,
-          working_cipher_block    TYPE xstring.
+    DATA: working_plain_block  TYPE xstring,
+          working_cipher_block TYPE xstring.
 
-    FIELD-SYMBOLS:  <raw16>       TYPE zif_aes_mode=>ty_raw16.
+    FIELD-SYMBOLS: <raw16> TYPE zif_aes_mode=>ty_raw16.
+
+
+    CLEAR et_data.
 
     LOOP AT it_data INTO working_plain_block.
       io_rijndael->encrypt_xstring(

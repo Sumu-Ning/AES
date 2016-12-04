@@ -3,17 +3,18 @@
 *----------------------------------------------------------------------*
 *
 *----------------------------------------------------------------------*
-CLASS zcl_aes_utility_test DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC
-  FOR TESTING
-  DURATION SHORT
-  RISK LEVEL HARMLESS .
-
-  PUBLIC SECTION.
 *"* public components of class ZCL_AES_UTILITY_TEST
 *"* do not include other source files here!!!
+class ZCL_AES_UTILITY_TEST definition
+  public
+  abstract
+  final
+  create public
+  for testing
+  duration short
+  risk level harmless .
+
+public section.
   PROTECTED SECTION.
 *"* protected components of class ZCL_AES_UTILITY_TEST
 *"* do not include other source files here!!!
