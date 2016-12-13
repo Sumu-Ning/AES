@@ -12,107 +12,102 @@ CLASS zcl_aes_utility DEFINITION
 
 *"* public components of class ZCL_AES_UTILITY
 *"* do not include other source files here!!!
-    CONSTANTS mc_block_length_in_bit TYPE int4 VALUE 128.   "#EC NOTEXT
-    CONSTANTS mc_block_length_in_byte TYPE int4 VALUE 16.   "#EC NOTEXT
-    CONSTANTS mc_key_length_in_bit_128 TYPE int4 VALUE 128. "#EC NOTEXT
-    CONSTANTS mc_key_length_in_bit_192 TYPE int4 VALUE 192. "#EC NOTEXT
-    CONSTANTS mc_key_length_in_bit_256 TYPE int4 VALUE 256. "#EC NOTEXT
-    CONSTANTS mc_encryption_mode_ecb TYPE char10 VALUE 'ECB'. "#EC NOTEXT
-    CONSTANTS mc_encryption_mode_cbc TYPE char10 VALUE 'CBC'. "#EC NOTEXT
-    CONSTANTS mc_encryption_mode_pcbc TYPE char10 VALUE 'PCBC'. "#EC NOTEXT
-    CONSTANTS mc_encryption_mode_cfb TYPE char10 VALUE 'CFB'. "#EC NOTEXT
-    CONSTANTS mc_encryption_mode_ofb TYPE char10 VALUE 'OFB'. "#EC NOTEXT
-    CONSTANTS mc_encryption_mode_ctr TYPE char10 VALUE 'CTR'. "#EC NOTEXT
-    CONSTANTS mc_padding_standard_none TYPE char10 VALUE 'NONE'. "#EC NOTEXT
-    CONSTANTS mc_padding_standard_pkcs_7 TYPE char10 VALUE 'PKCS7'. "#EC NOTEXT
+    CONSTANTS mc_block_length_in_bit TYPE int4 VALUE 128 ##NO_TEXT.
+    CONSTANTS mc_block_length_in_byte TYPE int4 VALUE 16 ##NO_TEXT.
+    CONSTANTS mc_key_length_in_bit_128 TYPE int4 VALUE 128 ##NO_TEXT.
+    CONSTANTS mc_key_length_in_bit_192 TYPE int4 VALUE 192 ##NO_TEXT.
+    CONSTANTS mc_key_length_in_bit_256 TYPE int4 VALUE 256 ##NO_TEXT.
+    CONSTANTS mc_encryption_mode_ecb TYPE char10 VALUE 'ECB' ##NO_TEXT.
+    CONSTANTS mc_encryption_mode_cbc TYPE char10 VALUE 'CBC' ##NO_TEXT.
+    CONSTANTS mc_encryption_mode_pcbc TYPE char10 VALUE 'PCBC' ##NO_TEXT.
+    CONSTANTS mc_encryption_mode_cfb TYPE char10 VALUE 'CFB' ##NO_TEXT.
+    CONSTANTS mc_encryption_mode_ofb TYPE char10 VALUE 'OFB' ##NO_TEXT.
+    CONSTANTS mc_encryption_mode_ctr TYPE char10 VALUE 'CTR' ##NO_TEXT.
+    CONSTANTS mc_padding_standard_none TYPE char10 VALUE 'NONE' ##NO_TEXT.
+    CONSTANTS mc_padding_standard_pkcs_7 TYPE char10 VALUE 'PKCS7' ##NO_TEXT.
     CLASS-DATA:
       mt_raw16 TYPE TABLE OF zif_aes_mode=>ty_raw16 .
 
-    CLASS-METHODS is_valid_key_xstring
-      IMPORTING
-        !i_key TYPE xstring
-      RETURNING
-        value(r_valid) TYPE boole_d .
     CLASS-METHODS is_valid_iv_xstring
       IMPORTING
         !i_initialization_vector TYPE xstring
       RETURNING
-        value(r_valid) TYPE boole_d .
+        VALUE(r_valid)           TYPE boole_d .
     CLASS-METHODS encrypt_xstring
       IMPORTING
-        !i_key TYPE xstring
-        !i_data TYPE xstring
+        !i_key                   TYPE xstring
+        !i_data                  TYPE xstring
         !i_initialization_vector TYPE xstring OPTIONAL
-        !i_padding_standard TYPE char10 OPTIONAL
-        !i_encryption_mode TYPE char10 OPTIONAL
+        !i_padding_standard      TYPE char10 OPTIONAL
+        !i_encryption_mode       TYPE char10 OPTIONAL
       EXPORTING
-        !e_data TYPE xstring .
+        !e_data                  TYPE xstring .
     CLASS-METHODS decrypt_xstring
       IMPORTING
-        !i_key TYPE xstring
-        !i_data TYPE xstring
+        !i_key                   TYPE xstring
+        !i_data                  TYPE xstring
         !i_initialization_vector TYPE xstring OPTIONAL
-        !i_padding_standard TYPE char10 OPTIONAL
-        !i_encryption_mode TYPE char10 OPTIONAL
+        !i_padding_standard      TYPE char10 OPTIONAL
+        !i_encryption_mode       TYPE char10 OPTIONAL
       EXPORTING
-        !e_data TYPE xstring .
+        !e_data                  TYPE xstring .
     CLASS-METHODS encrypt_raw16_table
       IMPORTING
-        !i_key TYPE xstring
+        !i_key                   TYPE xstring
         !i_initialization_vector TYPE xstring OPTIONAL
-        !i_encryption_mode TYPE char10 OPTIONAL
-        !i_padding_standard TYPE char10 OPTIONAL
-        !i_data_length_in_byte TYPE int4
+        !i_encryption_mode       TYPE char10 OPTIONAL
+        !i_padding_standard      TYPE char10 OPTIONAL
+        !i_data_length_in_byte   TYPE int4
       EXPORTING
-        !et_data LIKE mt_raw16
+        !et_data                 LIKE mt_raw16
       CHANGING
-        !ct_data LIKE mt_raw16 .
+        !ct_data                 LIKE mt_raw16 .
     CLASS-METHODS decrypt_raw16_table
       IMPORTING
-        !i_key TYPE xstring
+        !i_key                   TYPE xstring
         !i_initialization_vector TYPE xstring
-        !i_encryption_mode TYPE char10
-        !i_padding_standard TYPE char10
-        !it_data LIKE mt_raw16
+        !i_encryption_mode       TYPE char10
+        !i_padding_standard      TYPE char10
+        !it_data                 LIKE mt_raw16
       EXPORTING
-        !e_data_length_in_byte TYPE int4
-        !et_data LIKE mt_raw16 .
+        !e_data_length_in_byte   TYPE int4
+        !et_data                 LIKE mt_raw16 .
     CLASS-METHODS convert_xstring_to_raw16_table
       IMPORTING
-        !i_data TYPE xstring
+        !i_data                TYPE xstring
       EXPORTING
         !e_data_length_in_byte TYPE int4
-        !et_raw16_table LIKE mt_raw16 .
+        !et_raw16_table        LIKE mt_raw16 .
     CLASS-METHODS convert_raw16_table_to_xstring
       IMPORTING
         !i_data_length_in_byte TYPE int4
-        !it_raw16_table LIKE mt_raw16
+        !it_raw16_table        LIKE mt_raw16
       EXPORTING
-        !e_data TYPE xstring .
+        !e_data                TYPE xstring .
     CLASS-METHODS validate_encryption_mode
       IMPORTING
         !i_initialization_vector TYPE xstring OPTIONAL
-        !i_encryption_mode TYPE char10 OPTIONAL .
+        !i_encryption_mode       TYPE char10 OPTIONAL .
     CLASS-METHODS validate_padding_standard
       IMPORTING
         !i_padding_standard TYPE char10 OPTIONAL .
     CLASS-METHODS validate_raw16_table_size
       IMPORTING
         !i_data_length_in_byte TYPE int4
-        !it_data LIKE mt_raw16 .
+        !it_data               LIKE mt_raw16 .
     CLASS-METHODS add_padding_raw16_table
       IMPORTING
         !i_data_length_in_byte TYPE int4
-        !io_padding_utility TYPE REF TO zcl_byte_padding_utility
+        !io_padding_utility    TYPE REF TO zcl_byte_padding_utility
       CHANGING
-        !ct_data LIKE mt_raw16 .
+        !ct_data               LIKE mt_raw16 .
     CLASS-METHODS remove_padding_raw16_table
       IMPORTING
-        !io_padding_utility TYPE REF TO zcl_byte_padding_utility
+        !io_padding_utility    TYPE REF TO zcl_byte_padding_utility
       EXPORTING
         !e_data_length_in_byte TYPE int4
       CHANGING
-        !ct_data LIKE mt_raw16 .
+        !ct_data               LIKE mt_raw16 .
   PROTECTED SECTION.
 
 *"* protected components of class ZCL_AES_UTILITY
@@ -131,19 +126,19 @@ CLASS zcl_aes_utility DEFINITION
 
     CLASS-METHODS get_rijndael
       IMPORTING
-        !i_key TYPE xstring
+        !i_key            TYPE xstring
       RETURNING
-        value(r_rajndael) TYPE REF TO zcl_rijndael_utility .
+        VALUE(r_rajndael) TYPE REF TO zcl_rijndael_utility .
     CLASS-METHODS get_padding_utility
       IMPORTING
-        !i_padding_standard TYPE char10 OPTIONAL
+        !i_padding_standard      TYPE char10 OPTIONAL
       RETURNING
-        value(r_padding_utility) TYPE REF TO zcl_byte_padding_utility .
+        VALUE(r_padding_utility) TYPE REF TO zcl_byte_padding_utility .
     CLASS-METHODS get_aes_mode
       IMPORTING
         !i_encryption_mode TYPE char10
       RETURNING
-        value(r_aes_mode) TYPE REF TO zif_aes_mode .
+        VALUE(r_aes_mode)  TYPE REF TO zif_aes_mode .
   PRIVATE SECTION.
 *"* private components of class ZCL_AES_UTILITY
 *"* do not include other source files here!!!
@@ -212,7 +207,7 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
     lv_last_line_length = ( i_data_length_in_byte - 1 ) MOD mc_block_length_in_byte + 1.
 
     LOOP AT it_raw16_table ASSIGNING <raw16>.
-      AT LAST .
+      AT LAST.
         e_data = e_data && <raw16>(lv_last_line_length).
         EXIT.
       ENDAT.
@@ -224,10 +219,10 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
 
   METHOD convert_xstring_to_raw16_table.
-    DATA: lv_input_length       TYPE int4,
-          lv_number_of_blocks   TYPE int4,
-          lv_block_cursor       TYPE int4,
-          lv_offset             TYPE int4.
+    DATA: lv_input_length     TYPE int4,
+          lv_number_of_blocks TYPE int4,
+          lv_block_cursor     TYPE int4,
+          lv_offset           TYPE int4.
 
     FIELD-SYMBOLS: <raw16>      TYPE zif_aes_mode=>ty_raw16.
 
@@ -267,8 +262,7 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
         i_encryption_mode       = i_encryption_mode
         i_initialization_vector = i_initialization_vector ).
 
-    validate_padding_standard(
-        i_padding_standard      = i_padding_standard ).
+    validate_padding_standard( i_padding_standard ).
 
     rijndael = get_rijndael( i_key ).
     padding_utility = get_padding_utility( i_padding_standard ).
@@ -295,19 +289,16 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
 
   METHOD decrypt_xstring.
-    DATA: lt_plain_raw16            LIKE mt_raw16,
-          lt_cipher_raw16           LIKE mt_raw16,
-          lv_plain_length_in_byte   TYPE int4,
-          lv_cipher_length_in_byte  TYPE int4.
+    DATA: lt_plain_raw16           LIKE mt_raw16,
+          lt_cipher_raw16          LIKE mt_raw16,
+          lv_plain_length_in_byte  TYPE int4.
 
     CLEAR e_data.
 
-    lv_cipher_length_in_byte = xstrlen( i_data ).
     convert_xstring_to_raw16_table(
       EXPORTING
         i_data      = i_data
       IMPORTING
-        e_data_length_in_byte = lv_cipher_length_in_byte
         et_raw16_table        = lt_cipher_raw16 ).
 
     decrypt_raw16_table(
@@ -342,8 +333,7 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
         i_encryption_mode       = i_encryption_mode
         i_initialization_vector = i_initialization_vector ).
 
-    validate_padding_standard(
-        i_padding_standard      = i_padding_standard ).
+    validate_padding_standard( i_padding_standard ).
 
     validate_raw16_table_size(
         it_data                 = ct_data
@@ -373,10 +363,10 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
 
   METHOD encrypt_xstring.
-    DATA: lt_plain_raw16            LIKE mt_raw16,
-          lt_cipher_raw16           LIKE mt_raw16,
-          lv_plain_length_in_byte   TYPE int4,
-          lv_cipher_length_in_byte  TYPE int4.
+    DATA: lt_plain_raw16           LIKE mt_raw16,
+          lt_cipher_raw16          LIKE mt_raw16,
+          lv_plain_length_in_byte  TYPE int4,
+          lv_cipher_length_in_byte TYPE int4.
 
     CLEAR e_data.
 
@@ -479,8 +469,7 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
     IF key_length_in_bit = mc_key_length_in_bit_128.
       IF mo_rijndael_128_128 IS NOT BOUND.
-        CREATE OBJECT
-          mo_rijndael_128_128
+        CREATE OBJECT mo_rijndael_128_128
           EXPORTING
             i_key_length_in_bit   = mc_key_length_in_bit_128
             i_block_length_in_bit = mc_block_length_in_bit.
@@ -490,8 +479,7 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
     ELSEIF key_length_in_bit = mc_key_length_in_bit_192.
       IF mo_rijndael_128_192 IS NOT BOUND.
-        CREATE OBJECT
-          mo_rijndael_128_192
+        CREATE OBJECT mo_rijndael_128_192
           EXPORTING
             i_key_length_in_bit   = mc_key_length_in_bit_192
             i_block_length_in_bit = mc_block_length_in_bit.
@@ -501,8 +489,7 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
     ELSEIF key_length_in_bit = mc_key_length_in_bit_256.
       IF mo_rijndael_128_256 IS NOT BOUND.
-        CREATE OBJECT
-          mo_rijndael_128_256
+        CREATE OBJECT mo_rijndael_128_256
           EXPORTING
             i_key_length_in_bit   = mc_key_length_in_bit_256
             i_block_length_in_bit = mc_block_length_in_bit.
@@ -532,28 +519,13 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
   ENDMETHOD.                    "is_valid_iv_xstring
 
 
-  METHOD is_valid_key_xstring.
-    DATA: key_length_in_bit   TYPE int4.
-
-    key_length_in_bit = xstrlen( i_key ) * zcl_rijndael_utility=>mc_factor_bit_byte.
-
-    IF key_length_in_bit = mc_key_length_in_bit_128
-        OR key_length_in_bit = mc_key_length_in_bit_192
-        OR key_length_in_bit = mc_key_length_in_bit_256.
-      r_valid = abap_true.
-    ENDIF.
-
-  ENDMETHOD.                    "is_valid_key_xstring
-
-
   METHOD remove_padding_raw16_table.
-    DATA: lv_last_line_length       TYPE int4,
-          lv_padding_length         TYPE int4,
-          lv_last_line_number       TYPE int4,
-          lv_line_before_padding    TYPE xstring,
-          lv_line_after_padding     TYPE xstring.
+    DATA: lv_padding_length      TYPE int4,
+          lv_last_line_number    TYPE int4,
+          lv_line_before_padding TYPE xstring,
+          lv_line_after_padding  TYPE xstring.
 
-    FIELD-SYMBOLS: <raw16>          TYPE zif_aes_mode=>ty_raw16.
+    FIELD-SYMBOLS: <raw16> TYPE zif_aes_mode=>ty_raw16.
 
     CLEAR e_data_length_in_byte.
 

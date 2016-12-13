@@ -32,10 +32,10 @@ CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION.
 
   METHOD add_padding.
 
-    DATA: lv_data_length        TYPE int4,
-          lv_padding_x          TYPE x.
+    DATA: lv_data_length TYPE int4,
+          lv_padding_x   TYPE x.
 
-    validate_block_length( i_block_length_in_byte = i_block_length_in_byte ).
+    validate_block_length( i_block_length_in_byte ).
 
     lv_data_length = xstrlen( i_data ).
     e_padding_length_in_byte = i_block_length_in_byte - lv_data_length MOD i_block_length_in_byte.
@@ -63,7 +63,7 @@ CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION.
           lv_padding            TYPE xstring,
           lv_padding_validation TYPE xstring.
 
-    validate_block_length( i_block_length_in_byte = i_block_length_in_byte ).
+    validate_block_length( i_block_length_in_byte ).
 
     lv_data_length = xstrlen( i_data ).
     IF lv_data_length MOD i_block_length_in_byte <> 0.

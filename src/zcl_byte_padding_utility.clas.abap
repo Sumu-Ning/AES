@@ -48,11 +48,12 @@ CLASS ZCL_BYTE_PADDING_UTILITY IMPLEMENTATION.
 
 
   METHOD add_padding.
+    ASSERT 0 = 1. " method to be implemented in subclasses
   ENDMETHOD.                    "ADD_PADDING
 
 
   METHOD get_byte_padding_utility.
-    validate_padding_standard( i_padding_standard = i_padding_standard ).
+    validate_padding_standard( i_padding_standard ).
 
     CASE i_padding_standard.
       WHEN mc_padding_standard_pkcs_5.
@@ -70,6 +71,7 @@ CLASS ZCL_BYTE_PADDING_UTILITY IMPLEMENTATION.
 
 
   METHOD remove_padding.
+    ASSERT 0 = 1. " method to be implemented in subclasses
   ENDMETHOD.                    "REMOVE_PADDING
 
 

@@ -205,20 +205,6 @@ public section.
 *"* private components of class ZCL_RIJNDAEL_UTILITY
 *"* do not include other source files here!!!
 
-    TYPES:
-      BEGIN OF x_matrix_element,
-                  row TYPE int2,
-                  col TYPE int2,
-                  val TYPE x LENGTH 1,
-                END OF x_matrix_element .
-    TYPES:
-      BEGIN OF type_vector_4,
-                  _0 TYPE x LENGTH 1,
-                  _1 TYPE x LENGTH 1,
-                  _2 TYPE x LENGTH 1,
-                  _3 TYPE x LENGTH 1,
-                END OF type_vector_4 .
-
     CLASS-METHODS _build_multiplication .
     CLASS-METHODS _build_rcon .
     CLASS-METHODS _build_row_shift .
@@ -724,7 +710,7 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
           round_key_array     TYPE TABLE OF x,
           round_cursor        TYPE int4.
 
-    IF is_valid_key_xstring( i_key = i_key ) = abap_false.
+    IF is_valid_key_xstring( i_key ) = abap_false.
       RAISE EXCEPTION TYPE cx_me_illegal_argument
         EXPORTING
           name  = 'I_KEY'
@@ -852,7 +838,7 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
           round_key_array     TYPE TABLE OF x,
           round_cursor        TYPE int4.
 
-    IF is_valid_key_xstring( i_key = i_key ) = abap_false.
+    IF is_valid_key_xstring( i_key ) = abap_false.
       RAISE EXCEPTION TYPE cx_me_illegal_argument
         EXPORTING
           name  = 'I_KEY'
