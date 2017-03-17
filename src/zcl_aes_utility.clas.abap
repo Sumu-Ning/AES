@@ -113,34 +113,35 @@ protected section.
 
 *"* protected components of class ZCL_AES_UTILITY
 *"* do not include other source files here!!!
-  class-data MO_RIJNDAEL_128_128 type ref to ZCL_RIJNDAEL_UTILITY .
-  class-data MO_RIJNDAEL_128_192 type ref to ZCL_RIJNDAEL_UTILITY .
-  class-data MO_RIJNDAEL_128_256 type ref to ZCL_RIJNDAEL_UTILITY .
-  class-data MO_PADDING_UTILITY_NONE type ref to ZCL_BYTE_PADDING_UTILITY .
-  class-data MO_PADDING_UTILITY_PKCS_5 type ref to ZCL_BYTE_PADDING_UTILITY .
-  class-data MO_PADDING_UTILITY_PKCS_7 type ref to ZCL_BYTE_PADDING_UTILITY .
-  class-data MO_AES_MODE_CBC type ref to ZIF_AES_MODE .
-  class-data MO_AES_MODE_PCBC type ref to ZIF_AES_MODE .
-  class-data MO_AES_MODE_OFB type ref to ZIF_AES_MODE .
-  class-data MO_AES_MODE_CFB type ref to ZIF_AES_MODE .
-  class-data MO_AES_MODE_CTR type ref to ZIF_AES_MODE .
-  class-data MO_AES_MODE_ECB type ref to ZIF_AES_MODE .
 
-  class-methods GET_RIJNDAEL
-    importing
-      !I_KEY type XSTRING
-    returning
-      value(R_RAJNDAEL) type ref to ZCL_RIJNDAEL_UTILITY .
-  class-methods GET_PADDING_UTILITY
-    importing
-      !I_PADDING_STANDARD type CHAR10 optional
-    returning
-      value(R_PADDING_UTILITY) type ref to ZCL_BYTE_PADDING_UTILITY .
-  class-methods GET_AES_MODE
-    importing
-      !I_ENCRYPTION_MODE type CHAR10
-    returning
-      value(R_AES_MODE) type ref to ZIF_AES_MODE .
+    CLASS-DATA mo_rijndael_128_128 TYPE REF TO zcl_rijndael_utility .
+    CLASS-DATA mo_rijndael_128_192 TYPE REF TO zcl_rijndael_utility .
+    CLASS-DATA mo_rijndael_128_256 TYPE REF TO zcl_rijndael_utility .
+    CLASS-DATA mo_padding_utility_none TYPE REF TO zcl_byte_padding_utility .
+    CLASS-DATA mo_padding_utility_pkcs_5 TYPE REF TO zcl_byte_padding_utility .
+    CLASS-DATA mo_padding_utility_pkcs_7 TYPE REF TO zcl_byte_padding_utility .
+    CLASS-DATA mo_aes_mode_cbc TYPE REF TO zif_aes_mode .
+    CLASS-DATA mo_aes_mode_pcbc TYPE REF TO zif_aes_mode .
+    CLASS-DATA mo_aes_mode_ofb TYPE REF TO zif_aes_mode .
+    CLASS-DATA mo_aes_mode_cfb TYPE REF TO zif_aes_mode .
+    CLASS-DATA mo_aes_mode_ctr TYPE REF TO zif_aes_mode .
+    CLASS-DATA mo_aes_mode_ecb TYPE REF TO zif_aes_mode .
+
+    CLASS-METHODS get_rijndael
+      IMPORTING
+        !i_key            TYPE xstring
+      RETURNING
+        VALUE(r_rajndael) TYPE REF TO zcl_rijndael_utility .
+    CLASS-METHODS get_padding_utility
+      IMPORTING
+        !i_padding_standard      TYPE char10 OPTIONAL
+      RETURNING
+        VALUE(r_padding_utility) TYPE REF TO zcl_byte_padding_utility .
+    CLASS-METHODS get_aes_mode
+      IMPORTING
+        !i_encryption_mode TYPE char10
+      RETURNING
+        VALUE(r_aes_mode)  TYPE REF TO zif_aes_mode .
   PRIVATE SECTION.
 *"* private components of class ZCL_AES_UTILITY
 *"* do not include other source files here!!!
@@ -291,9 +292,9 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
 
   METHOD decrypt_xstring.
-    DATA: lt_plain_raw16           LIKE mt_raw16,
-          lt_cipher_raw16          LIKE mt_raw16,
-          lv_plain_length_in_byte  TYPE int4.
+    DATA: lt_plain_raw16          LIKE mt_raw16,
+          lt_cipher_raw16         LIKE mt_raw16,
+          lv_plain_length_in_byte TYPE int4.
 
     CLEAR e_data.
 
@@ -454,7 +455,8 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
         ENDIF.
         r_padding_utility = mo_padding_utility_none.
 
-       WHEN zcl_byte_padding_utility=>mc_padding_standard_pkcs_5.
+      WHEN zcl_byte_padding_utility=>mc_padding_standard_pkcs_5.
+
         IF mo_padding_utility_pkcs_5 IS NOT BOUND.
           mo_padding_utility_pkcs_5 = zcl_byte_padding_utility=>get_byte_padding_utility( i_padding_standard ).
         ENDIF.
