@@ -116,6 +116,7 @@ CLASS zcl_aes_utility DEFINITION
     CLASS-DATA mo_rijndael_128_192 TYPE REF TO zcl_rijndael_utility .
     CLASS-DATA mo_rijndael_128_256 TYPE REF TO zcl_rijndael_utility .
     CLASS-DATA mo_padding_utility_none TYPE REF TO zcl_byte_padding_utility .
+    CLASS-DATA mo_padding_utility_pkcs_5 TYPE REF TO zcl_byte_padding_utility .
     CLASS-DATA mo_padding_utility_pkcs_7 TYPE REF TO zcl_byte_padding_utility .
     CLASS-DATA mo_aes_mode_cbc TYPE REF TO zif_aes_mode .
     CLASS-DATA mo_aes_mode_pcbc TYPE REF TO zif_aes_mode .
@@ -289,9 +290,9 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
 
   METHOD decrypt_xstring.
-    DATA: lt_plain_raw16           LIKE mt_raw16,
-          lt_cipher_raw16          LIKE mt_raw16,
-          lv_plain_length_in_byte  TYPE int4.
+    DATA: lt_plain_raw16          LIKE mt_raw16,
+          lt_cipher_raw16         LIKE mt_raw16,
+          lv_plain_length_in_byte TYPE int4.
 
     CLEAR e_data.
 
@@ -451,8 +452,8 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
           mo_padding_utility_none = zcl_byte_padding_utility=>get_byte_padding_utility( i_padding_standard ).
         ENDIF.
         r_padding_utility = mo_padding_utility_none.
-        
-       WHEN zcl_byte_padding_utility=>mc_padding_standard_pkcs_5.
+
+      WHEN zcl_byte_padding_utility=>mc_padding_standard_pkcs_5.
         IF mo_padding_utility_pkcs_5 IS NOT BOUND.
           mo_padding_utility_pkcs_5 = zcl_byte_padding_utility=>get_byte_padding_utility( i_padding_standard ).
         ENDIF.
