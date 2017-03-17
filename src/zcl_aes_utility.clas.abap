@@ -3,142 +3,144 @@
 *----------------------------------------------------------------------*
 *
 *----------------------------------------------------------------------*
-CLASS zcl_aes_utility DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_AES_UTILITY definition
+  public
+  final
+  create public .
 
-  PUBLIC SECTION.
+public section.
 
 *"* public components of class ZCL_AES_UTILITY
 *"* do not include other source files here!!!
-    CONSTANTS mc_block_length_in_bit TYPE int4 VALUE 128 ##NO_TEXT.
-    CONSTANTS mc_block_length_in_byte TYPE int4 VALUE 16 ##NO_TEXT.
-    CONSTANTS mc_key_length_in_bit_128 TYPE int4 VALUE 128 ##NO_TEXT.
-    CONSTANTS mc_key_length_in_bit_192 TYPE int4 VALUE 192 ##NO_TEXT.
-    CONSTANTS mc_key_length_in_bit_256 TYPE int4 VALUE 256 ##NO_TEXT.
-    CONSTANTS mc_encryption_mode_ecb TYPE char10 VALUE 'ECB' ##NO_TEXT.
-    CONSTANTS mc_encryption_mode_cbc TYPE char10 VALUE 'CBC' ##NO_TEXT.
-    CONSTANTS mc_encryption_mode_pcbc TYPE char10 VALUE 'PCBC' ##NO_TEXT.
-    CONSTANTS mc_encryption_mode_cfb TYPE char10 VALUE 'CFB' ##NO_TEXT.
-    CONSTANTS mc_encryption_mode_ofb TYPE char10 VALUE 'OFB' ##NO_TEXT.
-    CONSTANTS mc_encryption_mode_ctr TYPE char10 VALUE 'CTR' ##NO_TEXT.
-    CONSTANTS mc_padding_standard_none TYPE char10 VALUE 'NONE' ##NO_TEXT.
-    CONSTANTS mc_padding_standard_pkcs_7 TYPE char10 VALUE 'PKCS7' ##NO_TEXT.
-    CLASS-DATA:
-      mt_raw16 TYPE TABLE OF zif_aes_mode=>ty_raw16 .
+  constants MC_BLOCK_LENGTH_IN_BIT type INT4 value 128 ##NO_TEXT.
+  constants MC_BLOCK_LENGTH_IN_BYTE type INT4 value 16 ##NO_TEXT.
+  constants MC_KEY_LENGTH_IN_BIT_128 type INT4 value 128 ##NO_TEXT.
+  constants MC_KEY_LENGTH_IN_BIT_192 type INT4 value 192 ##NO_TEXT.
+  constants MC_KEY_LENGTH_IN_BIT_256 type INT4 value 256 ##NO_TEXT.
+  constants MC_ENCRYPTION_MODE_ECB type CHAR10 value 'ECB' ##NO_TEXT.
+  constants MC_ENCRYPTION_MODE_CBC type CHAR10 value 'CBC' ##NO_TEXT.
+  constants MC_ENCRYPTION_MODE_PCBC type CHAR10 value 'PCBC' ##NO_TEXT.
+  constants MC_ENCRYPTION_MODE_CFB type CHAR10 value 'CFB' ##NO_TEXT.
+  constants MC_ENCRYPTION_MODE_OFB type CHAR10 value 'OFB' ##NO_TEXT.
+  constants MC_ENCRYPTION_MODE_CTR type CHAR10 value 'CTR' ##NO_TEXT.
+  constants MC_PADDING_STANDARD_NONE type CHAR10 value 'NONE' ##NO_TEXT.
+  constants MC_PADDING_STANDARD_PKCS_5 type CHAR10 value 'PKCS5' ##NO_TEXT.
+  constants MC_PADDING_STANDARD_PKCS_7 type CHAR10 value 'PKCS7' ##NO_TEXT.
+  class-data:
+    mt_raw16 TYPE TABLE OF zif_aes_mode=>ty_raw16 .
 
-    CLASS-METHODS is_valid_iv_xstring
-      IMPORTING
-        !i_initialization_vector TYPE xstring
-      RETURNING
-        VALUE(r_valid)           TYPE boole_d .
-    CLASS-METHODS encrypt_xstring
-      IMPORTING
-        !i_key                   TYPE xstring
-        !i_data                  TYPE xstring
-        !i_initialization_vector TYPE xstring OPTIONAL
-        !i_padding_standard      TYPE char10 OPTIONAL
-        !i_encryption_mode       TYPE char10 OPTIONAL
-      EXPORTING
-        !e_data                  TYPE xstring .
-    CLASS-METHODS decrypt_xstring
-      IMPORTING
-        !i_key                   TYPE xstring
-        !i_data                  TYPE xstring
-        !i_initialization_vector TYPE xstring OPTIONAL
-        !i_padding_standard      TYPE char10 OPTIONAL
-        !i_encryption_mode       TYPE char10 OPTIONAL
-      EXPORTING
-        !e_data                  TYPE xstring .
-    CLASS-METHODS encrypt_raw16_table
-      IMPORTING
-        !i_key                   TYPE xstring
-        !i_initialization_vector TYPE xstring OPTIONAL
-        !i_encryption_mode       TYPE char10 OPTIONAL
-        !i_padding_standard      TYPE char10 OPTIONAL
-        !i_data_length_in_byte   TYPE int4
-      EXPORTING
-        !et_data                 LIKE mt_raw16
-      CHANGING
-        !ct_data                 LIKE mt_raw16 .
-    CLASS-METHODS decrypt_raw16_table
-      IMPORTING
-        !i_key                   TYPE xstring
-        !i_initialization_vector TYPE xstring
-        !i_encryption_mode       TYPE char10
-        !i_padding_standard      TYPE char10
-        !it_data                 LIKE mt_raw16
-      EXPORTING
-        !e_data_length_in_byte   TYPE int4
-        !et_data                 LIKE mt_raw16 .
-    CLASS-METHODS convert_xstring_to_raw16_table
-      IMPORTING
-        !i_data                TYPE xstring
-      EXPORTING
-        !e_data_length_in_byte TYPE int4
-        !et_raw16_table        LIKE mt_raw16 .
-    CLASS-METHODS convert_raw16_table_to_xstring
-      IMPORTING
-        !i_data_length_in_byte TYPE int4
-        !it_raw16_table        LIKE mt_raw16
-      EXPORTING
-        !e_data                TYPE xstring .
-    CLASS-METHODS validate_encryption_mode
-      IMPORTING
-        !i_initialization_vector TYPE xstring OPTIONAL
-        !i_encryption_mode       TYPE char10 OPTIONAL .
-    CLASS-METHODS validate_padding_standard
-      IMPORTING
-        !i_padding_standard TYPE char10 OPTIONAL .
-    CLASS-METHODS validate_raw16_table_size
-      IMPORTING
-        !i_data_length_in_byte TYPE int4
-        !it_data               LIKE mt_raw16 .
-    CLASS-METHODS add_padding_raw16_table
-      IMPORTING
-        !i_data_length_in_byte TYPE int4
-        !io_padding_utility    TYPE REF TO zcl_byte_padding_utility
-      CHANGING
-        !ct_data               LIKE mt_raw16 .
-    CLASS-METHODS remove_padding_raw16_table
-      IMPORTING
-        !io_padding_utility    TYPE REF TO zcl_byte_padding_utility
-      EXPORTING
-        !e_data_length_in_byte TYPE int4
-      CHANGING
-        !ct_data               LIKE mt_raw16 .
-  PROTECTED SECTION.
+  class-methods IS_VALID_IV_XSTRING
+    importing
+      !I_INITIALIZATION_VECTOR type XSTRING
+    returning
+      value(R_VALID) type BOOLE_D .
+  class-methods ENCRYPT_XSTRING
+    importing
+      !I_KEY type XSTRING
+      !I_DATA type XSTRING
+      !I_INITIALIZATION_VECTOR type XSTRING optional
+      !I_PADDING_STANDARD type CHAR10 optional
+      !I_ENCRYPTION_MODE type CHAR10 optional
+    exporting
+      !E_DATA type XSTRING .
+  class-methods DECRYPT_XSTRING
+    importing
+      !I_KEY type XSTRING
+      !I_DATA type XSTRING
+      !I_INITIALIZATION_VECTOR type XSTRING optional
+      !I_PADDING_STANDARD type CHAR10 optional
+      !I_ENCRYPTION_MODE type CHAR10 optional
+    exporting
+      !E_DATA type XSTRING .
+  class-methods ENCRYPT_RAW16_TABLE
+    importing
+      !I_KEY type XSTRING
+      !I_INITIALIZATION_VECTOR type XSTRING optional
+      !I_ENCRYPTION_MODE type CHAR10 optional
+      !I_PADDING_STANDARD type CHAR10 optional
+      !I_DATA_LENGTH_IN_BYTE type INT4
+    exporting
+      !ET_DATA like MT_RAW16
+    changing
+      !CT_DATA like MT_RAW16 .
+  class-methods DECRYPT_RAW16_TABLE
+    importing
+      !I_KEY type XSTRING
+      !I_INITIALIZATION_VECTOR type XSTRING
+      !I_ENCRYPTION_MODE type CHAR10
+      !I_PADDING_STANDARD type CHAR10
+      !IT_DATA like MT_RAW16
+    exporting
+      !E_DATA_LENGTH_IN_BYTE type INT4
+      !ET_DATA like MT_RAW16 .
+  class-methods CONVERT_XSTRING_TO_RAW16_TABLE
+    importing
+      !I_DATA type XSTRING
+    exporting
+      !E_DATA_LENGTH_IN_BYTE type INT4
+      !ET_RAW16_TABLE like MT_RAW16 .
+  class-methods CONVERT_RAW16_TABLE_TO_XSTRING
+    importing
+      !I_DATA_LENGTH_IN_BYTE type INT4
+      !IT_RAW16_TABLE like MT_RAW16
+    exporting
+      !E_DATA type XSTRING .
+  class-methods VALIDATE_ENCRYPTION_MODE
+    importing
+      !I_INITIALIZATION_VECTOR type XSTRING optional
+      !I_ENCRYPTION_MODE type CHAR10 optional .
+  class-methods VALIDATE_PADDING_STANDARD
+    importing
+      !I_PADDING_STANDARD type CHAR10 optional .
+  class-methods VALIDATE_RAW16_TABLE_SIZE
+    importing
+      !I_DATA_LENGTH_IN_BYTE type INT4
+      !IT_DATA like MT_RAW16 .
+  class-methods ADD_PADDING_RAW16_TABLE
+    importing
+      !I_DATA_LENGTH_IN_BYTE type INT4
+      !IO_PADDING_UTILITY type ref to ZCL_BYTE_PADDING_UTILITY
+    changing
+      !CT_DATA like MT_RAW16 .
+  class-methods REMOVE_PADDING_RAW16_TABLE
+    importing
+      !IO_PADDING_UTILITY type ref to ZCL_BYTE_PADDING_UTILITY
+    exporting
+      !E_DATA_LENGTH_IN_BYTE type INT4
+    changing
+      !CT_DATA like MT_RAW16 .
+protected section.
 
 *"* protected components of class ZCL_AES_UTILITY
 *"* do not include other source files here!!!
-    CLASS-DATA mo_rijndael_128_128 TYPE REF TO zcl_rijndael_utility .
-    CLASS-DATA mo_rijndael_128_192 TYPE REF TO zcl_rijndael_utility .
-    CLASS-DATA mo_rijndael_128_256 TYPE REF TO zcl_rijndael_utility .
-    CLASS-DATA mo_padding_utility_none TYPE REF TO zcl_byte_padding_utility .
-    CLASS-DATA mo_padding_utility_pkcs_7 TYPE REF TO zcl_byte_padding_utility .
-    CLASS-DATA mo_aes_mode_cbc TYPE REF TO zif_aes_mode .
-    CLASS-DATA mo_aes_mode_pcbc TYPE REF TO zif_aes_mode .
-    CLASS-DATA mo_aes_mode_ofb TYPE REF TO zif_aes_mode .
-    CLASS-DATA mo_aes_mode_cfb TYPE REF TO zif_aes_mode .
-    CLASS-DATA mo_aes_mode_ctr TYPE REF TO zif_aes_mode .
-    CLASS-DATA mo_aes_mode_ecb TYPE REF TO zif_aes_mode .
+  class-data MO_RIJNDAEL_128_128 type ref to ZCL_RIJNDAEL_UTILITY .
+  class-data MO_RIJNDAEL_128_192 type ref to ZCL_RIJNDAEL_UTILITY .
+  class-data MO_RIJNDAEL_128_256 type ref to ZCL_RIJNDAEL_UTILITY .
+  class-data MO_PADDING_UTILITY_NONE type ref to ZCL_BYTE_PADDING_UTILITY .
+  class-data MO_PADDING_UTILITY_PKCS_5 type ref to ZCL_BYTE_PADDING_UTILITY .
+  class-data MO_PADDING_UTILITY_PKCS_7 type ref to ZCL_BYTE_PADDING_UTILITY .
+  class-data MO_AES_MODE_CBC type ref to ZIF_AES_MODE .
+  class-data MO_AES_MODE_PCBC type ref to ZIF_AES_MODE .
+  class-data MO_AES_MODE_OFB type ref to ZIF_AES_MODE .
+  class-data MO_AES_MODE_CFB type ref to ZIF_AES_MODE .
+  class-data MO_AES_MODE_CTR type ref to ZIF_AES_MODE .
+  class-data MO_AES_MODE_ECB type ref to ZIF_AES_MODE .
 
-    CLASS-METHODS get_rijndael
-      IMPORTING
-        !i_key            TYPE xstring
-      RETURNING
-        VALUE(r_rajndael) TYPE REF TO zcl_rijndael_utility .
-    CLASS-METHODS get_padding_utility
-      IMPORTING
-        !i_padding_standard      TYPE char10 OPTIONAL
-      RETURNING
-        VALUE(r_padding_utility) TYPE REF TO zcl_byte_padding_utility .
-    CLASS-METHODS get_aes_mode
-      IMPORTING
-        !i_encryption_mode TYPE char10
-      RETURNING
-        VALUE(r_aes_mode)  TYPE REF TO zif_aes_mode .
+  class-methods GET_RIJNDAEL
+    importing
+      !I_KEY type XSTRING
+    returning
+      value(R_RAJNDAEL) type ref to ZCL_RIJNDAEL_UTILITY .
+  class-methods GET_PADDING_UTILITY
+    importing
+      !I_PADDING_STANDARD type CHAR10 optional
+    returning
+      value(R_PADDING_UTILITY) type ref to ZCL_BYTE_PADDING_UTILITY .
+  class-methods GET_AES_MODE
+    importing
+      !I_ENCRYPTION_MODE type CHAR10
+    returning
+      value(R_AES_MODE) type ref to ZIF_AES_MODE .
   PRIVATE SECTION.
 *"* private components of class ZCL_AES_UTILITY
 *"* do not include other source files here!!!
@@ -451,7 +453,7 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
           mo_padding_utility_none = zcl_byte_padding_utility=>get_byte_padding_utility( i_padding_standard ).
         ENDIF.
         r_padding_utility = mo_padding_utility_none.
-        
+
        WHEN zcl_byte_padding_utility=>mc_padding_standard_pkcs_5.
         IF mo_padding_utility_pkcs_5 IS NOT BOUND.
           mo_padding_utility_pkcs_5 = zcl_byte_padding_utility=>get_byte_padding_utility( i_padding_standard ).

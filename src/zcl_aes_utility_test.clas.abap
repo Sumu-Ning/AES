@@ -18,102 +18,106 @@ public section.
   PROTECTED SECTION.
 *"* protected components of class ZCL_AES_UTILITY_TEST
 *"* do not include other source files here!!!
-  PRIVATE SECTION.
+private section.
 
 *"* private components of class ZCL_AES_UTILITY_TEST
 *"* do not include other source files here!!!
-    DATA key TYPE xstring .
-    DATA iv TYPE xstring .
-    DATA mode TYPE char10 .
-    DATA plaintext TYPE xstring .
-    DATA ciphertext TYPE xstring .
-    DATA test TYPE xstring .
-    DATA padding TYPE char10 .
+  data KEY type XSTRING .
+  data IV type XSTRING .
+  data MODE type CHAR10 .
+  data PLAINTEXT type XSTRING .
+  data CIPHERTEXT type XSTRING .
+  data TEST type XSTRING .
+  data PADDING type CHAR10 .
 
-    METHODS test_ecb_128_encrypt
-    FOR TESTING .
-    METHODS test_ecb_128_decrypt
-    FOR TESTING .
-    METHODS test_ecb_192_encrypt
-    FOR TESTING .
-    METHODS test_ecb_192_decrypt
-    FOR TESTING .
-    METHODS test_ecb_256_encrypt
-    FOR TESTING .
-    METHODS test_ecb_256_decrypt
-    FOR TESTING .
-    METHODS test_cbc_128_encrypt
-    FOR TESTING .
-    METHODS test_cbc_128_decrypt
-    FOR TESTING .
-    METHODS test_cbc_192_encrypt
-    FOR TESTING .
-    METHODS test_cbc_192_decrypt
-    FOR TESTING .
-    METHODS test_cbc_256_encrypt
-    FOR TESTING .
-    METHODS test_cbc_256_decrypt
-    FOR TESTING .
-    METHODS test_cfb_128_encrypt
-    FOR TESTING .
-    METHODS test_cfb_128_decrypt
-    FOR TESTING .
-    METHODS test_cfb_192_encrypt
-    FOR TESTING .
-    METHODS test_cfb_192_decrypt
-    FOR TESTING .
-    METHODS test_cfb_256_encrypt
-    FOR TESTING .
-    METHODS test_cfb_256_decrypt
-    FOR TESTING .
-    METHODS test_ofb_128_encrypt
-    FOR TESTING .
-    METHODS test_ofb_128_decrypt
-    FOR TESTING .
-    METHODS test_ofb_192_encrypt
-    FOR TESTING .
-    METHODS test_ofb_192_decrypt
-    FOR TESTING .
-    METHODS test_ofb_256_encrypt
-    FOR TESTING .
-    METHODS test_ofb_256_decrypt
-    FOR TESTING .
-    METHODS test_ctr_128_encrypt
-    FOR TESTING .
-    METHODS test_ctr_128_decrypt
-    FOR TESTING .
-    METHODS test_ctr_192_encrypt
-    FOR TESTING .
-    METHODS test_ctr_192_decrypt
-    FOR TESTING .
-    METHODS test_ctr_256_encrypt
-    FOR TESTING .
-    METHODS test_ctr_256_decrypt
-    FOR TESTING .
-    METHODS test_cbc_128_pkcs7_encrypt
-    FOR TESTING .
-    METHODS test_cbc_128_pkcs7_decrypt
-    FOR TESTING .
-    METHODS test_ecb_128_pkcs7_encrypt
-    FOR TESTING .
-    METHODS test_ecb_128_pkcs7_decrypt
-    FOR TESTING .
-    METHODS test_ctr_128_pkcs7_encrypt
-    FOR TESTING .
-    METHODS test_ctr_128_pkcs7_decrypt
-    FOR TESTING .
-    METHODS test_cbc_128_none_encrypt
-    FOR TESTING .
-    METHODS test_cbc_128_none_decrypt
-    FOR TESTING .
-    METHODS test_ecb_128_none_encrypt
-    FOR TESTING .
-    METHODS test_ecb_128_none_decrypt
-    FOR TESTING .
-    METHODS test_ctr_128_none_encrypt
-    FOR TESTING .
-    METHODS test_ctr_128_none_decrypt
-    FOR TESTING .
+  methods TEST_ECB_128_ENCRYPT
+  for testing .
+  methods TEST_ECB_128_DECRYPT
+  for testing .
+  methods TEST_ECB_192_ENCRYPT
+  for testing .
+  methods TEST_ECB_192_DECRYPT
+  for testing .
+  methods TEST_ECB_256_ENCRYPT
+  for testing .
+  methods TEST_ECB_256_DECRYPT
+  for testing .
+  methods TEST_CBC_128_ENCRYPT
+  for testing .
+  methods TEST_CBC_128_DECRYPT
+  for testing .
+  methods TEST_CBC_192_ENCRYPT
+  for testing .
+  methods TEST_CBC_192_DECRYPT
+  for testing .
+  methods TEST_CBC_256_ENCRYPT
+  for testing .
+  methods TEST_CBC_256_DECRYPT
+  for testing .
+  methods TEST_CFB_128_ENCRYPT
+  for testing .
+  methods TEST_CFB_128_DECRYPT
+  for testing .
+  methods TEST_CFB_192_ENCRYPT
+  for testing .
+  methods TEST_CFB_192_DECRYPT
+  for testing .
+  methods TEST_CFB_256_ENCRYPT
+  for testing .
+  methods TEST_CFB_256_DECRYPT
+  for testing .
+  methods TEST_OFB_128_ENCRYPT
+  for testing .
+  methods TEST_OFB_128_DECRYPT
+  for testing .
+  methods TEST_OFB_192_ENCRYPT
+  for testing .
+  methods TEST_OFB_192_DECRYPT
+  for testing .
+  methods TEST_OFB_256_ENCRYPT
+  for testing .
+  methods TEST_OFB_256_DECRYPT
+  for testing .
+  methods TEST_CTR_128_ENCRYPT
+  for testing .
+  methods TEST_CTR_128_DECRYPT
+  for testing .
+  methods TEST_CTR_192_ENCRYPT
+  for testing .
+  methods TEST_CTR_192_DECRYPT
+  for testing .
+  methods TEST_CTR_256_ENCRYPT
+  for testing .
+  methods TEST_CTR_256_DECRYPT
+  for testing .
+  methods TEST_CBC_128_PKCS5_ENCRYPT
+  for testing .
+  methods TEST_CBC_128_PKCS5_DECRYPT
+  for testing .
+  methods TEST_CBC_128_PKCS7_ENCRYPT
+  for testing .
+  methods TEST_CBC_128_PKCS7_DECRYPT
+  for testing .
+  methods TEST_ECB_128_PKCS7_ENCRYPT
+  for testing .
+  methods TEST_ECB_128_PKCS7_DECRYPT
+  for testing .
+  methods TEST_CTR_128_PKCS7_ENCRYPT
+  for testing .
+  methods TEST_CTR_128_PKCS7_DECRYPT
+  for testing .
+  methods TEST_CBC_128_NONE_ENCRYPT
+  for testing .
+  methods TEST_CBC_128_NONE_DECRYPT
+  for testing .
+  methods TEST_ECB_128_NONE_ENCRYPT
+  for testing .
+  methods TEST_ECB_128_NONE_DECRYPT
+  for testing .
+  methods TEST_CTR_128_NONE_ENCRYPT
+  for testing .
+  methods TEST_CTR_128_NONE_DECRYPT
+  for testing .
 ENDCLASS.
 
 
@@ -269,6 +273,115 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
 
   ENDMETHOD.                    "test_cbc_128_none_encrypt
+
+
+  METHOD test_cbc_128_pkcs5_decrypt.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
+    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_5.
+
+
+    plaintext   = ''.
+    ciphertext  = '403496DC0514F7065DADEAC36BE2D2B7'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = '06B90A8D1EDC4E20408EBFEFC2EE16D4'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '7649ABAC8119B246CEE98E9B12E9197DB2BD9526A59A56C1F1889B2E7B2071E6'.
+
+    zcl_aes_utility=>decrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = ciphertext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = plaintext ).
+
+  ENDMETHOD.                    "test_cbc_128_pkcs7_decrypt
+
+
+  METHOD TEST_CBC_128_PKCS5_ENCRYPT.
+    key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
+    iv          = '000102030405060708090A0B0C0D0E0F'.
+    mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
+    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_5.
+
+    plaintext   = ''.
+    ciphertext  = '403496DC0514F7065DADEAC36BE2D2B7'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1'.
+    ciphertext  = '06B90A8D1EDC4E20408EBFEFC2EE16D4'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+    plaintext   = '6BC1BEE22E409F96E93D7E117393172AAE2D'.
+    ciphertext  = '7649ABAC8119B246CEE98E9B12E9197DB2BD9526A59A56C1F1889B2E7B2071E6'.
+
+    zcl_aes_utility=>encrypt_xstring(
+      EXPORTING
+        i_key                   = key
+        i_data                  = plaintext
+        i_initialization_vector = iv
+        i_encryption_mode       = mode
+        i_padding_standard      = padding
+      IMPORTING
+        e_data                  = test ).
+
+    cl_abap_unit_assert=>assert_equals( act = test exp = ciphertext ).
+
+  ENDMETHOD.                    "test_cbc_128_pkcs7_encrypt
 
 
   METHOD test_cbc_128_pkcs7_decrypt.
