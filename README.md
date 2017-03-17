@@ -27,6 +27,7 @@ Classes:
   * ZCL_AES_UTILITY_TEST:   
     * Testing cases of ZCL_AES_UTILITY, including encryption mode ECB, CBC, CFB, OFB, CTR, Testing of PCBC is not included yet. 
 	* Testing Data is from http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf  
-    * Testing cases of No padding and PKCS #7 padding, but only in ECB, CBC and CTR mode.  
+    * Testing cases of No padding and PKCS #7 padding, but only in ECB, CBC and CTR mode. 
+    * Testing cases of No padding and PKCS #5 padding, but only in CBC mode.
   
 
