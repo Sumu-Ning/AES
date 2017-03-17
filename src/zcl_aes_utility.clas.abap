@@ -451,6 +451,12 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
           mo_padding_utility_none = zcl_byte_padding_utility=>get_byte_padding_utility( i_padding_standard ).
         ENDIF.
         r_padding_utility = mo_padding_utility_none.
+        
+       WHEN zcl_byte_padding_utility=>mc_padding_standard_pkcs_5.
+        IF mo_padding_utility_pkcs_5 IS NOT BOUND.
+          mo_padding_utility_pkcs_5 = zcl_byte_padding_utility=>get_byte_padding_utility( i_padding_standard ).
+        ENDIF.
+        r_padding_utility = mo_padding_utility_pkcs_5.
 
       WHEN zcl_byte_padding_utility=>mc_padding_standard_pkcs_7.
         IF mo_padding_utility_pkcs_7 IS NOT BOUND.
@@ -589,6 +595,7 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
     IF  i_padding_standard IS NOT INITIAL AND
         i_padding_standard <> zcl_byte_padding_utility=>mc_padding_standard_none AND
+        i_padding_standard <> zcl_byte_padding_utility=>mc_padding_standard_pkcs_5 AND
         i_padding_standard <> zcl_byte_padding_utility=>mc_padding_standard_pkcs_7.
 
       RAISE EXCEPTION TYPE cx_me_illegal_argument
