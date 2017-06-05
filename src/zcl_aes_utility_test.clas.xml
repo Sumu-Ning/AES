@@ -18,7 +18,6 @@
     <DURATION_TYPE>12</DURATION_TYPE>
     <RISK_LEVEL>11</RISK_LEVEL>
    </VSEOCLASS>
-   <TPOOL/>
   </asx:values>
  </asx:abap>
 </abapGit>
