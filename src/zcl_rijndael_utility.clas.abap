@@ -6,30 +6,30 @@ public section.
 *"* public components of class ZCL_RIJNDAEL_UTILITY
 *"* do not include other source files here!!!
 
-  constants MC_FACTOR_BIT_BYTE type INT4 value 8. "#EC NOTEXT
-  constants MC_FACTOR_BIT_WORD type INT4 value 32. "#EC NOTEXT
-  constants MC_FACTOR_BYTE_WORD type INT4 value 4. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_128 type INT4 value 128. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_160 type INT4 value 160. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_192 type INT4 value 192. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_224 type INT4 value 224. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_256 type INT4 value 256. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_16 type INT4 value 16. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_20 type INT4 value 20. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_24 type INT4 value 24. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_28 type INT4 value 28. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_32 type INT4 value 32. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_4 type INT4 value 4. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_5 type INT4 value 5. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_6 type INT4 value 6. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_7 type INT4 value 7. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_8 type INT4 value 8. "#EC NOTEXT
+  constants MC_FACTOR_BIT_BYTE type i value 8. "#EC NOTEXT
+  constants MC_FACTOR_BIT_WORD type i value 32. "#EC NOTEXT
+  constants MC_FACTOR_BYTE_WORD type i value 4. "#EC NOTEXT
+  constants MC_LENGTH_IN_BIT_128 type i value 128. "#EC NOTEXT
+  constants MC_LENGTH_IN_BIT_160 type i value 160. "#EC NOTEXT
+  constants MC_LENGTH_IN_BIT_192 type i value 192. "#EC NOTEXT
+  constants MC_LENGTH_IN_BIT_224 type i value 224. "#EC NOTEXT
+  constants MC_LENGTH_IN_BIT_256 type i value 256. "#EC NOTEXT
+  constants MC_LENGTH_IN_BYTE_16 type i value 16. "#EC NOTEXT
+  constants MC_LENGTH_IN_BYTE_20 type i value 20. "#EC NOTEXT
+  constants MC_LENGTH_IN_BYTE_24 type i value 24. "#EC NOTEXT
+  constants MC_LENGTH_IN_BYTE_28 type i value 28. "#EC NOTEXT
+  constants MC_LENGTH_IN_BYTE_32 type i value 32. "#EC NOTEXT
+  constants MC_LENGTH_IN_WORD_4 type i value 4. "#EC NOTEXT
+  constants MC_LENGTH_IN_WORD_5 type i value 5. "#EC NOTEXT
+  constants MC_LENGTH_IN_WORD_6 type i value 6. "#EC NOTEXT
+  constants MC_LENGTH_IN_WORD_7 type i value 7. "#EC NOTEXT
+  constants MC_LENGTH_IN_WORD_8 type i value 8. "#EC NOTEXT
 
   class-methods CLASS_CONSTRUCTOR .
   methods CONSTRUCTOR
     importing
-      !I_KEY_LENGTH_IN_BIT type INT4
-      !I_BLOCK_LENGTH_IN_BIT type INT4 .
+      !I_KEY_LENGTH_IN_BIT type i
+      !I_BLOCK_LENGTH_IN_BIT type i .
   methods DECRYPT_XSTRING
     importing
       !I_KEY type XSTRING
@@ -46,7 +46,7 @@ public section.
     importing
       !I_KEY type XSTRING
     returning
-      value(R_VALID) type BOOLE_D .
+      value(R_VALID) type abap_bool .
   PROTECTED SECTION.
 *"* protected components of class ZCL_RIJNDAEL_UTILITY
 *"* do not include other source files here!!!
@@ -66,41 +66,41 @@ public section.
     CLASS-DATA:
       mt_rcon TYPE TABLE OF x .
     CLASS-DATA:
-      mt_row_shift_4 TYPE TABLE OF int4 .
+      mt_row_shift_4 TYPE TABLE OF i .
     CLASS-DATA:
-      mt_row_shift_4_inv TYPE TABLE OF int4 .
+      mt_row_shift_4_inv TYPE TABLE OF i .
     CLASS-DATA:
-      mt_row_shift_5 TYPE TABLE OF int4 .
+      mt_row_shift_5 TYPE TABLE OF i .
     CLASS-DATA:
-      mt_row_shift_5_inv TYPE TABLE OF int4 .
+      mt_row_shift_5_inv TYPE TABLE OF i .
     CLASS-DATA:
-      mt_row_shift_6 TYPE TABLE OF int4 .
+      mt_row_shift_6 TYPE TABLE OF i .
     CLASS-DATA:
-      mt_row_shift_6_inv TYPE TABLE OF int4 .
+      mt_row_shift_6_inv TYPE TABLE OF i .
     CLASS-DATA:
-      mt_row_shift_7 TYPE TABLE OF int4 .
+      mt_row_shift_7 TYPE TABLE OF i .
     CLASS-DATA:
-      mt_row_shift_7_inv TYPE TABLE OF int4 .
+      mt_row_shift_7_inv TYPE TABLE OF i .
     CLASS-DATA:
-      mt_row_shift_8 TYPE TABLE OF int4 .
+      mt_row_shift_8 TYPE TABLE OF i .
     CLASS-DATA:
-      mt_row_shift_8_inv TYPE TABLE OF int4 .
+      mt_row_shift_8_inv TYPE TABLE OF i .
     CLASS-DATA:
       mt_sbox TYPE TABLE OF x .
     CLASS-DATA:
       mt_sbox_inv TYPE TABLE OF x .
     CLASS-DATA:
       mt_x TYPE TABLE OF x .
-    DATA m_block_length_in_bit TYPE int4 .
-    DATA m_block_length_in_byte TYPE int4 .
-    DATA m_block_length_in_word TYPE int4 .
-    DATA m_key_length_in_bit TYPE int4 .
-    DATA m_key_length_in_byte TYPE int4 .
-    DATA m_key_length_in_word TYPE int4 .
-    DATA m_round TYPE int4 .
-    DATA m_row_shift_c1 TYPE int4 .
-    DATA m_row_shift_c2 TYPE int4 .
-    DATA m_row_shift_c3 TYPE int4 .
+    DATA m_block_length_in_bit TYPE i .
+    DATA m_block_length_in_byte TYPE i .
+    DATA m_block_length_in_word TYPE i .
+    DATA m_key_length_in_bit TYPE i .
+    DATA m_key_length_in_byte TYPE i .
+    DATA m_key_length_in_word TYPE i .
+    DATA m_round TYPE i .
+    DATA m_row_shift_c1 TYPE i .
+    DATA m_row_shift_c2 TYPE i .
+    DATA m_row_shift_c3 TYPE i .
 
     CLASS-METHODS _get_multiplication_11
       IMPORTING
@@ -134,7 +134,7 @@ public section.
         value(r_x) TYPE hextyp .
     CLASS-METHODS _rcon
       IMPORTING
-        !i_number TYPE int4
+        !i_number TYPE i
       EXPORTING
         !e_array LIKE mt_x .
     CLASS-METHODS _sbox
@@ -146,9 +146,9 @@ public section.
     METHODS array_copy
       IMPORTING
         !i_source LIKE mt_x
-        !i_start_index TYPE int4
-        !i_end_index TYPE int4
-        !i_dest_start_index TYPE int4 DEFAULT 1
+        !i_start_index TYPE i
+        !i_end_index TYPE i
+        !i_dest_start_index TYPE i DEFAULT 1
       CHANGING
         !c_destination LIKE mt_x .
     METHODS array_mix_columns
@@ -159,14 +159,14 @@ public section.
         !c_array LIKE mt_x .
     METHODS array_sbox
       IMPORTING
-        !i_start_index TYPE int4 OPTIONAL
-        !i_end_index TYPE int4 OPTIONAL
+        !i_start_index TYPE i OPTIONAL
+        !i_end_index TYPE i OPTIONAL
       CHANGING
         !c_data LIKE mt_x .
     METHODS array_sbox_inv
       IMPORTING
-        !i_start_index TYPE int4 OPTIONAL
-        !i_end_index TYPE int4 OPTIONAL
+        !i_start_index TYPE i OPTIONAL
+        !i_end_index TYPE i OPTIONAL
       CHANGING
         !c_data LIKE mt_x .
     METHODS array_shift_rows
@@ -178,9 +178,9 @@ public section.
     METHODS array_xor
       IMPORTING
         !i_array LIKE mt_x
-        !i_i_array_start_index TYPE int4
-        !i_c_array_start_index TYPE int4
-        !i_length_by_byte TYPE int4
+        !i_i_array_start_index TYPE i
+        !i_c_array_start_index TYPE i
+        !i_length_by_byte TYPE i
       CHANGING
         !c_array LIKE mt_x .
     METHODS calculate_round_key_array
@@ -191,14 +191,14 @@ public section.
     METHODS convert_array_to_xstring
       IMPORTING
         !i_array LIKE mt_x
-        !i_start_index TYPE int4 OPTIONAL
-        !i_end_index TYPE int4 OPTIONAL
+        !i_start_index TYPE i OPTIONAL
+        !i_end_index TYPE i OPTIONAL
       EXPORTING
         !e_xstring TYPE xstring .
     METHODS convert_xstring_to_array
       IMPORTING
         !i_xstring TYPE xstring
-        !i_length_in_byte TYPE int4 OPTIONAL
+        !i_length_in_byte TYPE i OPTIONAL
       EXPORTING
         !e_array LIKE mt_x .
   PRIVATE SECTION.
@@ -219,7 +219,7 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD array_copy.
-    DATA: dest_cursor       TYPE int4.
+    DATA: dest_cursor       TYPE i.
     FIELD-SYMBOLS:  <fs_x>  TYPE x.
 
     dest_cursor = i_dest_start_index.
@@ -232,9 +232,9 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD array_mix_columns.
-    DATA: array_length_in_word  TYPE int4,
-          cursor                TYPE int4,
-          word_offset           TYPE int4,
+    DATA: array_length_in_word  TYPE i,
+          cursor                TYPE i,
+          word_offset           TYPE i,
           temp_array            TYPE TABLE OF x,
           temp_x_1              TYPE x,
           temp_x_2              TYPE x,
@@ -269,9 +269,9 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD array_mix_columns_inv.
-    DATA: array_length_in_word  TYPE int4,
-          cursor                TYPE int4,
-          word_offset           TYPE int4,
+    DATA: array_length_in_word  TYPE i,
+          cursor                TYPE i,
+          word_offset           TYPE i,
           temp_array            TYPE TABLE OF x,
           temp_x_1              TYPE x,
           temp_x_2              TYPE x,
@@ -306,9 +306,9 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD array_sbox.
-    DATA: start_index       TYPE int4,
-          end_index         TYPE int4,
-          length_in_byte    TYPE int4.
+    DATA: start_index       TYPE i,
+          end_index         TYPE i,
+          length_in_byte    TYPE i.
 
     FIELD-SYMBOLS:  <fs_x>  TYPE x.
 
@@ -337,9 +337,9 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD array_sbox_inv.
-    DATA: start_index       TYPE int4,
-          end_index         TYPE int4,
-          length_in_byte    TYPE int4.
+    DATA: start_index       TYPE i,
+          end_index         TYPE i,
+          length_in_byte    TYPE i.
 
     FIELD-SYMBOLS:  <fs_x>  TYPE x.
 
@@ -368,14 +368,14 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD array_shift_rows.
-    DATA: array_length_in_byte    TYPE int4,
-          number_of_blocks        TYPE int4,
-          block_cursor            TYPE int4,
-          block_offset            TYPE int4,
+    DATA: array_length_in_byte    TYPE i,
+          number_of_blocks        TYPE i,
+          block_cursor            TYPE i,
+          block_offset            TYPE i,
           temp_array              TYPE TABLE OF x,
-          shift_row_lookup_table  TYPE TABLE OF int4,
-          cursor                  TYPE int4,
-          index_from              TYPE int4.
+          shift_row_lookup_table  TYPE TABLE OF i,
+          cursor                  TYPE i,
+          index_from              TYPE i.
 
     FIELD-SYMBOLS: <fs_x>         TYPE x.
 
@@ -435,14 +435,14 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD array_shift_rows_inv.
-    DATA: array_length_in_byte    TYPE int4,
-          number_of_blocks        TYPE int4,
-          block_cursor            TYPE int4,
-          block_offset            TYPE int4,
+    DATA: array_length_in_byte    TYPE i,
+          number_of_blocks        TYPE i,
+          block_cursor            TYPE i,
+          block_offset            TYPE i,
           temp_array              TYPE TABLE OF x,
-          shift_row_lookup_table  TYPE TABLE OF int4,
-          cursor                  TYPE int4,
-          index_from              TYPE int4.
+          shift_row_lookup_table  TYPE TABLE OF i,
+          cursor                  TYPE i,
+          index_from              TYPE i.
 
     FIELD-SYMBOLS: <fs_x>         TYPE x.
 
@@ -487,7 +487,7 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD array_xor.
-    DATA: i_array_cursor            TYPE int4.
+    DATA: i_array_cursor            TYPE i.
     FIELD-SYMBOLS:  <fs_i_array>    TYPE x,
                     <fs_c_array>    TYPE x.
 
@@ -502,7 +502,7 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD calculate_round_key_array.
-    DATA: cursor              TYPE int4,
+    DATA: cursor              TYPE i,
           temp_word           TYPE TABLE OF x,
           rcon                TYPE TABLE OF x.
 
@@ -654,8 +654,8 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD convert_array_to_xstring.
-    DATA: start_index   TYPE int4,
-          end_index     TYPE int4.
+    DATA: start_index   TYPE i,
+          end_index     TYPE i.
 
     FIELD-SYMBOLS:  <fs_x>  TYPE x.
 
@@ -680,8 +680,8 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD convert_xstring_to_array.
-    DATA: xstring_length_in_byte  TYPE int4,
-          cursor                  TYPE int4.
+    DATA: xstring_length_in_byte  TYPE i,
+          cursor                  TYPE i.
 
     CLEAR e_array.
 
@@ -703,12 +703,12 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD decrypt_xstring.
-    DATA: data_length_in_byte TYPE int4,
-          number_of_blocks    TYPE int4,
-          block_cursor        TYPE int4,
+    DATA: data_length_in_byte TYPE i,
+          number_of_blocks    TYPE i,
+          block_cursor        TYPE i,
           data_array          TYPE TABLE OF x,
           round_key_array     TYPE TABLE OF x,
-          round_cursor        TYPE int4.
+          round_cursor        TYPE i.
 
     IF is_valid_key_xstring( i_key ) = abap_false.
       RAISE EXCEPTION TYPE cx_me_illegal_argument
@@ -831,12 +831,12 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD encrypt_xstring.
-    DATA: data_length_in_byte TYPE int4,
-          number_of_blocks    TYPE int4,
-          block_cursor        TYPE int4,
+    DATA: data_length_in_byte TYPE i,
+          number_of_blocks    TYPE i,
+          block_cursor        TYPE i,
           data_array          TYPE TABLE OF x,
           round_key_array     TYPE TABLE OF x,
-          round_cursor        TYPE int4.
+          round_cursor        TYPE i.
 
     IF is_valid_key_xstring( i_key ) = abap_false.
       RAISE EXCEPTION TYPE cx_me_illegal_argument

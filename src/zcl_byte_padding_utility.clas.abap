@@ -10,34 +10,35 @@ CLASS zcl_byte_padding_utility DEFINITION
 
   PUBLIC SECTION.
 
-    CONSTANTS mc_padding_standard_pkcs_5 TYPE char10 VALUE 'PKCS5'. "#EC NOTEXT
-    CONSTANTS mc_padding_standard_pkcs_7 TYPE char10 VALUE 'PKCS7'. "#EC NOTEXT
-    CONSTANTS mc_padding_standard_none TYPE char10 VALUE 'NONE'. "#EC NOTEXT
+    TYPES mty_padding_standard TYPE c LENGTH 10.
+    CONSTANTS mc_padding_standard_pkcs_5 TYPE mty_padding_standard VALUE 'PKCS5'. "#EC NOTEXT
+    CONSTANTS mc_padding_standard_pkcs_7 TYPE mty_padding_standard VALUE 'PKCS7'. "#EC NOTEXT
+    CONSTANTS mc_padding_standard_none TYPE mty_padding_standard VALUE 'NONE'. "#EC NOTEXT
 
     METHODS add_padding
       IMPORTING
         !i_data TYPE xstring
-        !i_block_length_in_byte TYPE int4 OPTIONAL
+        !i_block_length_in_byte TYPE i OPTIONAL
       EXPORTING
-        !e_padding_length_in_byte TYPE int4
+        !e_padding_length_in_byte TYPE i
         !e_padding TYPE xstring
         !e_data TYPE xstring .
     METHODS remove_padding
       IMPORTING
         !i_data TYPE xstring
-        !i_block_length_in_byte TYPE int4 OPTIONAL
+        !i_block_length_in_byte TYPE i OPTIONAL
       EXPORTING
-        !e_padding_length_in_byte TYPE int4
+        !e_padding_length_in_byte TYPE i
         !e_padding TYPE xstring
         !e_data TYPE xstring .
     CLASS-METHODS get_byte_padding_utility
       IMPORTING
-        !i_padding_standard TYPE char10 DEFAULT mc_padding_standard_none
+        !i_padding_standard TYPE mty_padding_standard DEFAULT mc_padding_standard_none
       RETURNING
         value(r_byte_padding_utility) TYPE REF TO zcl_byte_padding_utility .
     CLASS-METHODS validate_padding_standard
       IMPORTING
-        !i_padding_standard TYPE char10 OPTIONAL .
+        !i_padding_standard TYPE mty_padding_standard OPTIONAL .
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
