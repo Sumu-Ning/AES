@@ -50,7 +50,7 @@ public section.
   PROTECTED SECTION.
 *"* protected components of class ZCL_RIJNDAEL_UTILITY
 *"* do not include other source files here!!!
-
+    TYPES mty_multiplication type x length 1.
     CLASS-DATA:
       mt_multiplication_lookup_11 TYPE TABLE OF x .
     CLASS-DATA:
@@ -106,32 +106,32 @@ public section.
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE hextyp .
+        value(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_13
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE hextyp .
+        value(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_14
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE hextyp .
+        value(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_2
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE hextyp .
+        value(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_3
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE hextyp .
+        value(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_9
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE hextyp .
+        value(r_x) TYPE mty_multiplication .
     CLASS-METHODS _rcon
       IMPORTING
         !i_number TYPE i
@@ -3567,42 +3567,42 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
 
 
   METHOD _get_multiplication_11.
-    DATA: lookup_index    TYPE int1.
+    DATA: lookup_index    TYPE i.
     lookup_index = i_x.
     READ TABLE mt_multiplication_lookup_11 INDEX lookup_index + 1 INTO r_x.
   ENDMETHOD.                    "_GET_MULTIPLICATION_11
 
 
   METHOD _get_multiplication_13.
-    DATA: lookup_index    TYPE int1.
+    DATA: lookup_index    TYPE i.
     lookup_index = i_x.
     READ TABLE mt_multiplication_lookup_13 INDEX lookup_index + 1 INTO r_x.
   ENDMETHOD.                    "_GET_MULTIPLICATION_13
 
 
   METHOD _get_multiplication_14.
-    DATA: lookup_index    TYPE int1.
+    DATA: lookup_index    TYPE i.
     lookup_index = i_x.
     READ TABLE mt_multiplication_lookup_14 INDEX lookup_index + 1 INTO r_x.
   ENDMETHOD.                    "_get_multiplication_14
 
 
   METHOD _get_multiplication_2.
-    DATA: lookup_index    TYPE int1.
+    DATA: lookup_index    TYPE i.
     lookup_index = i_x.
     READ TABLE mt_multiplication_lookup_2 INDEX lookup_index + 1 INTO r_x.
   ENDMETHOD.                    "_get_multiplication_2
 
 
   METHOD _get_multiplication_3.
-    DATA: lookup_index    TYPE int1.
+    DATA: lookup_index    TYPE i.
     lookup_index = i_x.
     READ TABLE mt_multiplication_lookup_3 INDEX lookup_index + 1 INTO r_x.
   ENDMETHOD.                    "_GET_MULTIPLICATION_3
 
 
   METHOD _get_multiplication_9.
-    DATA: lookup_index    TYPE int1.
+    DATA: lookup_index    TYPE i.
     lookup_index = i_x.
     READ TABLE mt_multiplication_lookup_9 INDEX lookup_index + 1 INTO r_x.
   ENDMETHOD.                    "_GET_MULTIPLICATION_9
