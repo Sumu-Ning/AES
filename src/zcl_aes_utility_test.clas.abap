@@ -24,11 +24,11 @@ public section.
 *"* do not include other source files here!!!
     DATA key TYPE xstring .
     DATA iv TYPE xstring .
-    DATA mode TYPE char10 .
+    DATA mode TYPE zcl_aes_utility=>mty_encryption_mode .
     DATA plaintext TYPE xstring .
     DATA ciphertext TYPE xstring .
     DATA test TYPE xstring .
-    DATA padding TYPE char10 .
+    DATA padding TYPE zcl_byte_padding_utility=>mty_padding_standard .
 
     METHODS test_ecb_128_encrypt
     FOR TESTING .
@@ -167,7 +167,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
     mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
-    padding     = zcl_aes_utility=>mc_padding_standard_none.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_none.
 
     plaintext   = ''.
     ciphertext  = ''.
@@ -221,7 +221,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
     mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
-    padding     = zcl_aes_utility=>mc_padding_standard_none.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_none.
 
     plaintext   = ''.
     ciphertext  = ''.
@@ -275,7 +275,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
     mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
-    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_pkcs_7.
 
     plaintext   = ''.
     ciphertext  = 'C84AF0B613435D5D9182801A9BD9320B'.
@@ -329,7 +329,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
     mode        = zcl_aes_utility=>mc_encryption_mode_cbc.
-    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_pkcs_7.
 
     plaintext   = ''.
     ciphertext  = 'C84AF0B613435D5D9182801A9BD9320B'.
@@ -635,7 +635,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ctr.
-    padding     = zcl_aes_utility=>mc_padding_standard_none.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_none.
 
     plaintext   = ''.
     ciphertext  = ''.
@@ -689,7 +689,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ctr.
-    padding     = zcl_aes_utility=>mc_padding_standard_none.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_none.
 
     plaintext   = ''.
     ciphertext  = ''.
@@ -743,7 +743,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ctr.
-    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_pkcs_7.
 
     plaintext   = ''.
     ciphertext  = '40EE77DC897D22A6CA1927F98BBFFC70'.
@@ -797,7 +797,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     iv          = '000102030405060708090A0B0C0D0E0F'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ctr.
-    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_pkcs_7.
 
     plaintext   = ''.
     ciphertext  = '40EE77DC897D22A6CA1927F98BBFFC70'.
@@ -996,7 +996,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
   METHOD test_ecb_128_none_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
-    padding     = zcl_aes_utility=>mc_padding_standard_none.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_none.
 
     plaintext   = ''.
     ciphertext  = ''.
@@ -1049,7 +1049,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
   METHOD test_ecb_128_none_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
-    padding     = zcl_aes_utility=>mc_padding_standard_none.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_none.
 
     plaintext   = ''.
     ciphertext  = ''.
@@ -1102,7 +1102,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
   METHOD test_ecb_128_pkcs7_decrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
-    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_pkcs_7.
 
     plaintext   = ''.
     ciphertext  = 'A254BE88E037DDD9D79FB6411C3F9DF8'.
@@ -1155,7 +1155,7 @@ CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
   METHOD test_ecb_128_pkcs7_encrypt.
     key         = '2B7E151628AED2A6ABF7158809CF4F3C'.
     mode        = zcl_aes_utility=>mc_encryption_mode_ecb.
-    padding     = zcl_aes_utility=>mc_padding_standard_pkcs_7.
+    padding     = zcl_byte_padding_utility=>mc_padding_standard_pkcs_7.
 
     plaintext   = ''.
     ciphertext  = 'A254BE88E037DDD9D79FB6411C3F9DF8'.

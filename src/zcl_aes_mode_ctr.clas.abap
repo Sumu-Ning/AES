@@ -30,8 +30,8 @@ CLASS ZCL_AES_MODE_CTR IMPLEMENTATION.
     CONSTANTS: zero TYPE x LENGTH 1 VALUE '00',
                one  TYPE x LENGTH 1 VALUE '01'.
 
-    DATA: offset TYPE int4,
-          length TYPE int4,
+    DATA: offset TYPE i,
+          length TYPE i,
           cursor TYPE x LENGTH 1.
 
     length = xstrlen( i_data ).

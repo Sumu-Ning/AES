@@ -10,12 +10,12 @@ CLASS zcl_padding_utility_pkcs_7 DEFINITION
 
   PUBLIC SECTION.
 
-    CONSTANTS mc_block_size_in_byte_min TYPE int4 VALUE 1.  "#EC NOTEXT
-    CONSTANTS mc_block_size_in_byte_max TYPE int4 VALUE 255. "#EC NOTEXT
+    CONSTANTS mc_block_size_in_byte_min TYPE i VALUE 1.  "#EC NOTEXT
+    CONSTANTS mc_block_size_in_byte_max TYPE i VALUE 255. "#EC NOTEXT
 
     METHODS validate_block_length
       IMPORTING
-        !i_block_length_in_byte TYPE int4 OPTIONAL .
+        !i_block_length_in_byte TYPE i OPTIONAL .
 
     METHODS add_padding
       REDEFINITION .
@@ -32,7 +32,7 @@ CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION.
 
   METHOD add_padding.
 
-    DATA: lv_data_length TYPE int4,
+    DATA: lv_data_length TYPE i,
           lv_padding_x   TYPE x.
 
     validate_block_length( i_block_length_in_byte ).
@@ -55,11 +55,11 @@ CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION.
 
   METHOD remove_padding.
 
-    DATA: lv_data_length        TYPE int4,
-          lv_data_length_minus1 TYPE int4,
-          lv_data_length_raw    TYPE int4,
+    DATA: lv_data_length        TYPE i,
+          lv_data_length_minus1 TYPE i,
+          lv_data_length_raw    TYPE i,
           lv_padding_x          TYPE x,
-          lv_padding_length     TYPE int4,
+          lv_padding_length     TYPE i,
           lv_padding            TYPE xstring,
           lv_padding_validation TYPE xstring.
 

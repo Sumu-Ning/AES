@@ -10,7 +10,7 @@ CLASS zcl_padding_utility_pkcs_5 DEFINITION
 
   PUBLIC SECTION.
 
-    CONSTANTS mc_block_size_in_byte TYPE int4 VALUE 8.      "#EC NOTEXT
+    CONSTANTS mc_block_size_in_byte TYPE i VALUE 8.      "#EC NOTEXT
 
     METHODS add_padding
       REDEFINITION .
