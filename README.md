@@ -6,7 +6,7 @@ Actual Implementation is done by the more generic Rijndael way, and AES is treat
 
 Supporting:  
   * Encryption mode: ECB, CBC, PCBC, CFB, OFB, CTR.  
-  * Padding standard: None, PKCS #5, PKCS #7.
+  * Padding standard: None, PKCS #5, PKCS #7. (Please use PKCS #7, No Padding and PKCS #5 do not work well with AES, unless you know clearly what they are doing.)
 
 Please just copy the source code file into ABAP editor (Source Code-Based mode), and activate it. Or install via [abapGit](http://www.abapgit.org).
 
