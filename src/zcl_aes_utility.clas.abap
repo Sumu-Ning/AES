@@ -204,16 +204,19 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
       RETURN.
     ENDIF.
 
-    lv_last_line_length = ( i_data_length_in_byte - 1 ) MOD mc_block_length_in_byte + 1.
+    CONCATENATE LINES OF it_raw16_table INTO e_data IN BYTE MODE.
+    e_data = e_data(i_data_length_in_byte).
 
-    LOOP AT it_raw16_table ASSIGNING <raw16>.
-      AT LAST.
-        e_data = e_data && <raw16>(lv_last_line_length).
-        EXIT.
-      ENDAT.
-
-      e_data = e_data && <raw16>.
-    ENDLOOP.
+*    lv_last_line_length = ( i_data_length_in_byte - 1 ) MOD mc_block_length_in_byte + 1.
+*
+*    LOOP AT it_raw16_table ASSIGNING <raw16>.
+*      AT LAST.
+*        e_data = e_data && <raw16>(lv_last_line_length).
+*        EXIT.
+*      ENDAT.
+*
+*      e_data = e_data && <raw16>.
+*    ENDLOOP.
 
   ENDMETHOD.                    "convert_raw16_table_to_xstring
 
