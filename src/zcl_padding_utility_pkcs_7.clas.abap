@@ -27,7 +27,7 @@ ENDCLASS.
 
 
 
-CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION.
+CLASS zcl_padding_utility_pkcs_7 IMPLEMENTATION.
 
 
   METHOD add_padding.
@@ -67,9 +67,9 @@ CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION.
 
     lv_data_length = xstrlen( i_data ).
     IF lv_data_length MOD i_block_length_in_byte <> 0.
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_DATA'
+          parameter  = 'I_DATA'
           value = 'Length of input data is not multiple of block length.'.
     ENDIF.
 
@@ -83,17 +83,17 @@ CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION.
 
     lv_data_length_raw = lv_data_length - lv_padding_length.
     IF lv_data_length_raw < 0.
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_DATA'
+          parameter  = 'I_DATA'
           value = 'Input data is not valid PKCS #7 padded data.'.
     ENDIF.
 
     lv_padding_validation = i_data+lv_data_length_raw(lv_padding_length).
     IF lv_padding <> lv_padding_validation.
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_DATA'
+          parameter  = 'I_DATA'
           value = 'Input data is not valid PKCS #7 padded data.'.
     ENDIF.
 
@@ -111,9 +111,9 @@ CLASS ZCL_PADDING_UTILITY_PKCS_7 IMPLEMENTATION.
     IF  i_block_length_in_byte < mc_block_size_in_byte_min OR
         i_block_length_in_byte > mc_block_size_in_byte_max.
 
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_BLOCK_LENGTH_IN_BYTE'
+          parameter  = 'I_BLOCK_LENGTH_IN_BYTE'
           value = 'PKCS #7 needs a block length between 1 byte and 255 bytes inclusive.'.
 
     ENDIF.
