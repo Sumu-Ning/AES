@@ -5,7 +5,7 @@
   "description": "ABAP Utilities for AES encryption, decryption under MIT License.",
   "scripts": {
     "test": "npm run unit",
-    "unit": "rm -rf output && abap_transpile abap_transpile.json && sed -i 's/break;//ig' ./output/zcl_aes_utility.clas.mjs && echo RUNNING && node output/index.mjs"
+    "unit": "rm -rf output && abap_transpile abap_transpile.json && echo RUNNING && node output/index.mjs"
   },
   "dependencies": {
     "@abaplint/cli": "^2.102.2",
