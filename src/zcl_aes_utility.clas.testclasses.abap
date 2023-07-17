@@ -1,20 +1,6 @@
-*----------------------------------------------------------------------*
-*       CLASS zcl_aes_utility_test DEFINITION
-*----------------------------------------------------------------------*
-*
-*----------------------------------------------------------------------*
-*"* public components of class ZCL_AES_UTILITY_TEST
-*"* do not include other source files here!!!
-class ZCL_AES_UTILITY_TEST definition
-  public
-  abstract
-  final
-  create public
-  for testing
-  duration short
-  risk level harmless .
+CLASS lcl_test DEFINITION FINAL FOR TESTING RISK LEVEL HARMLESS DURATION SHORT.
 
-public section.
+  PUBLIC SECTION.
   PROTECTED SECTION.
 *"* protected components of class ZCL_AES_UTILITY_TEST
 *"* do not include other source files here!!!
@@ -118,7 +104,7 @@ ENDCLASS.
 
 
 
-CLASS ZCL_AES_UTILITY_TEST IMPLEMENTATION.
+CLASS lcl_test IMPLEMENTATION.
 
 
   METHOD test_cbc_128_decrypt.
