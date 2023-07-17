@@ -1,7 +1,6 @@
 {
   "global": {
     "files": "/src/**/*.*",
-    "exclude": [],
     "skipGeneratedGatewayClasses": true,
     "skipGeneratedPersistentClasses": true,
     "skipGeneratedFunctionGroups": true,
@@ -16,49 +15,22 @@
   ],
   "syntax": {
     "version": "v702",
-    "errorNamespace": "^(Z|Y|LCL_|TY_|LIF_)",
-    "globalConstants": [],
-    "globalMacros": []
+    "errorNamespace": "^(Z|Y|LCL_|TY_|LIF_)"
   },
   "rules": {
     "7bit_ascii": true,
     "abapdoc": false,
     "allowed_object_naming": true,
-    "allowed_object_types": {
-      "allowed": []
-    },
+    "allowed_object_types": true,
     "ambiguous_statement": true,
-    "avoid_use": {
-      "define": true,
-      "endselect": true,
-      "execSQL": true,
-      "kernelCall": true,
-      "communication": true,
-      "statics": true,
-      "systemCall": true,
-      "defaultKey": true,
-      "break": true,
-      "describeLines": true
-    },
+    "avoid_use": true,
     "begin_end_names": true,
     "begin_single_include": true,
-    "chain_mainly_declarations": {
-      "definitions": true,
-      "write": true,
-      "move": true,
-      "refresh": true,
-      "unassign": true,
-      "clear": true,
-      "hide": true,
-      "free": true,
-      "include": true,
-      "check": true
-    },
+    "chain_mainly_declarations": false,
     "check_abstract": false,
     "check_comments": false,
     "check_ddic": true,
     "check_include": true,
-    "check_no_handler_pragma": true,
     "check_subrc": false,
     "check_syntax": true,
     "check_text_elements": true,
@@ -118,14 +90,11 @@
     "keep_single_parameter_on_one_line": false,
     "keyword_case": false,
     "line_break_multiple_parameters": false,
-    "line_break_style": true,
     "line_length": false,
     "line_only_punc": false,
     "local_class_naming": false,
-    "local_testclass_location": true,
     "local_variable_names": false,
     "main_file_contents": true,
-    "many_parenthesis": true,
     "max_one_statement": true,
     "message_exists": true,
     "method_length": false,
@@ -164,39 +133,14 @@
       "ssst": "^Z",
       "shlp": "^Z"
     },
-    "obsolete_statement": {
-      "refresh": true,
-      "compute": true,
-      "add": true,
-      "subtract": true,
-      "multiply": true,
-      "move": true,
-      "divide": true,
-      "requested": true,
-      "occurs": true,
-      "setExtended": true,
-      "withHeaderLine": true,
-      "fieldSymbolStructure": true,
-      "typePools": true,
-      "load": true
-    },
+    "obsolete_statement": true,
     "parser_error": true,
     "parser_missing_space": true,
     "prefer_inline": true,
     "prefer_is_not": true,
     "prefer_returning_to_exporting": false,
     "prefer_xsdbool": true,
-    "preferred_compare_operator": {
-      "badOperators": [
-        "EQ",
-        "><",
-        "NE",
-        "GE",
-        "GT",
-        "LT",
-        "LE"
-      ]
-    },
+    "preferred_compare_operator": true,
     "prefix_is_current_class": {
       "omitMeInstanceCalls": true
     },
@@ -207,13 +151,7 @@
       "ignoreWorkflow": true
     },
     "rfc_error_handling": true,
-    "selection_screen_naming": {
-      "patternKind": "required",
-      "ignoreNames": [],
-      "ignorePatterns": [],
-      "parameter": "^P_.+$",
-      "selectOption": "^S_.+$"
-    },
+    "selection_screen_naming": false,
     "sequential_blank": {
       "lines": 4
     },
