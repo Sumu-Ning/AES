@@ -601,7 +601,7 @@ CLASS zcl_aes_utility IMPLEMENTATION.
 
 
   METHOD validate_raw16_table_size.
-    DATA: lv_line_of_raw16_table  TYPE i.
+    DATA lv_line_of_raw16_table TYPE i.
 
     lv_line_of_raw16_table = lines( it_data ).
 
@@ -610,8 +610,8 @@ CLASS zcl_aes_utility IMPLEMENTATION.
 
       RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          parameter  = 'I_DATA_LENGTH_IN_BYTE'
-          value = 'Data length and table size do not match.'.
+          parameter = 'I_DATA_LENGTH_IN_BYTE'
+          value     = 'Data length and table size do not match.'.
 
     ENDIF.
 
