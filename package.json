@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "ABAP Utilities for AES encryption, decryption under MIT License.",
   "scripts": {
-    "test": "npm run unit",
+    "test": "npx abaplint && npm run unit",
     "unit": "rm -rf output && abap_transpile abap_transpile.json && echo RUNNING && node output/index.mjs"
   },
   "dependencies": {
