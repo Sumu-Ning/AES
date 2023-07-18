@@ -35,7 +35,7 @@ CLASS zcl_byte_padding_utility DEFINITION
       IMPORTING
         !i_padding_standard TYPE mty_padding_standard DEFAULT mc_padding_standard_none
       RETURNING
-        value(r_byte_padding_utility) TYPE REF TO zcl_byte_padding_utility .
+        VALUE(r_byte_padding_utility) TYPE REF TO zcl_byte_padding_utility .
     CLASS-METHODS validate_padding_standard
       IMPORTING
         !i_padding_standard TYPE mty_padding_standard OPTIONAL .
@@ -45,7 +45,7 @@ ENDCLASS.
 
 
 
-CLASS ZCL_BYTE_PADDING_UTILITY IMPLEMENTATION.
+CLASS zcl_byte_padding_utility IMPLEMENTATION.
 
 
   METHOD add_padding.
@@ -82,9 +82,9 @@ CLASS ZCL_BYTE_PADDING_UTILITY IMPLEMENTATION.
         i_padding_standard <> mc_padding_standard_pkcs_5 AND
         i_padding_standard <> mc_padding_standard_pkcs_7.
 
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_PADDING_STANDARD'
+          parameter  = 'I_PADDING_STANDARD'
           value = 'Unsupported padding standard'.
 
     ENDIF.

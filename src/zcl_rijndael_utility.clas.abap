@@ -1,56 +1,56 @@
-class ZCL_RIJNDAEL_UTILITY definition
-  public
-  create public .
+CLASS zcl_rijndael_utility DEFINITION
+  PUBLIC
+  CREATE PUBLIC .
 
-public section.
+  PUBLIC SECTION.
 *"* public components of class ZCL_RIJNDAEL_UTILITY
 *"* do not include other source files here!!!
 
-  constants MC_FACTOR_BIT_BYTE type i value 8. "#EC NOTEXT
-  constants MC_FACTOR_BIT_WORD type i value 32. "#EC NOTEXT
-  constants MC_FACTOR_BYTE_WORD type i value 4. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_128 type i value 128. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_160 type i value 160. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_192 type i value 192. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_224 type i value 224. "#EC NOTEXT
-  constants MC_LENGTH_IN_BIT_256 type i value 256. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_16 type i value 16. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_20 type i value 20. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_24 type i value 24. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_28 type i value 28. "#EC NOTEXT
-  constants MC_LENGTH_IN_BYTE_32 type i value 32. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_4 type i value 4. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_5 type i value 5. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_6 type i value 6. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_7 type i value 7. "#EC NOTEXT
-  constants MC_LENGTH_IN_WORD_8 type i value 8. "#EC NOTEXT
+    CONSTANTS mc_factor_bit_byte TYPE i VALUE 8. "#EC NOTEXT
+    CONSTANTS mc_factor_bit_word TYPE i VALUE 32. "#EC NOTEXT
+    CONSTANTS mc_factor_byte_word TYPE i VALUE 4. "#EC NOTEXT
+    CONSTANTS mc_length_in_bit_128 TYPE i VALUE 128. "#EC NOTEXT
+    CONSTANTS mc_length_in_bit_160 TYPE i VALUE 160. "#EC NOTEXT
+    CONSTANTS mc_length_in_bit_192 TYPE i VALUE 192. "#EC NOTEXT
+    CONSTANTS mc_length_in_bit_224 TYPE i VALUE 224. "#EC NOTEXT
+    CONSTANTS mc_length_in_bit_256 TYPE i VALUE 256. "#EC NOTEXT
+    CONSTANTS mc_length_in_byte_16 TYPE i VALUE 16. "#EC NOTEXT
+    CONSTANTS mc_length_in_byte_20 TYPE i VALUE 20. "#EC NOTEXT
+    CONSTANTS mc_length_in_byte_24 TYPE i VALUE 24. "#EC NOTEXT
+    CONSTANTS mc_length_in_byte_28 TYPE i VALUE 28. "#EC NOTEXT
+    CONSTANTS mc_length_in_byte_32 TYPE i VALUE 32. "#EC NOTEXT
+    CONSTANTS mc_length_in_word_4 TYPE i VALUE 4. "#EC NOTEXT
+    CONSTANTS mc_length_in_word_5 TYPE i VALUE 5. "#EC NOTEXT
+    CONSTANTS mc_length_in_word_6 TYPE i VALUE 6. "#EC NOTEXT
+    CONSTANTS mc_length_in_word_7 TYPE i VALUE 7. "#EC NOTEXT
+    CONSTANTS mc_length_in_word_8 TYPE i VALUE 8. "#EC NOTEXT
 
-  class-methods CLASS_CONSTRUCTOR .
-  methods CONSTRUCTOR
-    importing
-      !I_KEY_LENGTH_IN_BIT type i
-      !I_BLOCK_LENGTH_IN_BIT type i .
-  methods DECRYPT_XSTRING
-    importing
-      !I_KEY type XSTRING
-      !I_DATA type XSTRING
-    exporting
-      !E_DATA type XSTRING .
-  methods ENCRYPT_XSTRING
-    importing
-      !I_KEY type XSTRING
-      !I_DATA type XSTRING
-    exporting
-      !E_DATA type XSTRING .
-  methods IS_VALID_KEY_XSTRING
-    importing
-      !I_KEY type XSTRING
-    returning
-      value(R_VALID) type abap_bool .
+    CLASS-METHODS class_constructor .
+    METHODS constructor
+    IMPORTING
+      !i_key_length_in_bit TYPE i
+      !i_block_length_in_bit TYPE i .
+    METHODS decrypt_xstring
+    IMPORTING
+      !i_key TYPE xstring
+      !i_data TYPE xstring
+    EXPORTING
+      !e_data TYPE xstring .
+    METHODS encrypt_xstring
+    IMPORTING
+      !i_key TYPE xstring
+      !i_data TYPE xstring
+    EXPORTING
+      !e_data TYPE xstring .
+    METHODS is_valid_key_xstring
+    IMPORTING
+      !i_key TYPE xstring
+    RETURNING
+      VALUE(r_valid) TYPE abap_bool .
   PROTECTED SECTION.
 *"* protected components of class ZCL_RIJNDAEL_UTILITY
 *"* do not include other source files here!!!
-    TYPES mty_multiplication type x length 1.
+    TYPES mty_multiplication TYPE x LENGTH 1.
     CLASS-DATA:
       mt_multiplication_lookup_11 TYPE TABLE OF x .
     CLASS-DATA:
@@ -106,32 +106,32 @@ public section.
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE mty_multiplication .
+        VALUE(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_13
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE mty_multiplication .
+        VALUE(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_14
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE mty_multiplication .
+        VALUE(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_2
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE mty_multiplication .
+        VALUE(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_3
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE mty_multiplication .
+        VALUE(r_x) TYPE mty_multiplication .
     CLASS-METHODS _get_multiplication_9
       IMPORTING
         !i_x TYPE x
       RETURNING
-        value(r_x) TYPE mty_multiplication .
+        VALUE(r_x) TYPE mty_multiplication .
     CLASS-METHODS _rcon
       IMPORTING
         !i_number TYPE i
@@ -139,7 +139,7 @@ public section.
         !e_array LIKE mt_x .
     CLASS-METHODS _sbox
       CHANGING
-        value(c_x) TYPE x .
+        VALUE(c_x) TYPE x .
     CLASS-METHODS _sbox_inv
       CHANGING
         !c_x TYPE x .
@@ -215,7 +215,7 @@ ENDCLASS.
 
 
 
-CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
+CLASS zcl_rijndael_utility IMPLEMENTATION.
 
 
   METHOD array_copy.
@@ -604,9 +604,9 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
         AND i_key_length_in_bit <> mc_length_in_bit_224
         AND i_key_length_in_bit <> mc_length_in_bit_256.
       "Don't know what good exception class to use ...
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_KEY_LENGTH_IN_BIT'
+          parameter  = 'I_KEY_LENGTH_IN_BIT'
           value = 'Incorrect key length'.
     ENDIF.
 
@@ -616,9 +616,9 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
         AND i_block_length_in_bit <> mc_length_in_bit_224
         AND i_block_length_in_bit <> mc_length_in_bit_256.
       "Don't know what good exception class to use ...
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_BLOCK_LENGTH_IN_BIT'
+          parameter  = 'I_BLOCK_LENGTH_IN_BIT'
           value = 'Incorrect key length'.
     ENDIF.
 
@@ -711,9 +711,9 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
           round_cursor        TYPE i.
 
     IF is_valid_key_xstring( i_key ) = abap_false.
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_KEY'
+          parameter  = 'I_KEY'
           value = 'Incorrect key length'.
     ENDIF.
 
@@ -839,9 +839,9 @@ CLASS ZCL_RIJNDAEL_UTILITY IMPLEMENTATION.
           round_cursor        TYPE i.
 
     IF is_valid_key_xstring( i_key ) = abap_false.
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_KEY'
+          parameter  = 'I_KEY'
           value = 'Incorrect key length'.
     ENDIF.
 

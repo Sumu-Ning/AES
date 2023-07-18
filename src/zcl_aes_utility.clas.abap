@@ -146,7 +146,7 @@ ENDCLASS.
 
 
 
-CLASS ZCL_AES_UTILITY IMPLEMENTATION.
+CLASS zcl_aes_utility IMPLEMENTATION.
 
 
   METHOD add_padding_raw16_table.
@@ -204,16 +204,8 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
       RETURN.
     ENDIF.
 
-    lv_last_line_length = ( i_data_length_in_byte - 1 ) MOD mc_block_length_in_byte + 1.
-
-    LOOP AT it_raw16_table ASSIGNING <raw16>.
-      AT LAST.
-        e_data = e_data && <raw16>(lv_last_line_length).
-        EXIT.
-      ENDAT.
-
-      e_data = e_data && <raw16>.
-    ENDLOOP.
+    CONCATENATE LINES OF it_raw16_table INTO e_data IN BYTE MODE.
+    e_data = e_data(i_data_length_in_byte).
 
   ENDMETHOD.                    "convert_raw16_table_to_xstring
 
@@ -504,9 +496,9 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
       r_rajndael = mo_rijndael_128_256.
 
     ELSE.
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_KEY'
+          parameter = 'I_KEY'
           value = 'Incorrect key length'.
     ENDIF.
 
@@ -570,9 +562,9 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
         OR i_encryption_mode = mc_encryption_mode_ofb
         OR i_encryption_mode = mc_encryption_mode_ctr.
       IF is_valid_iv_xstring( i_initialization_vector ) = abap_false.
-        RAISE EXCEPTION TYPE cx_me_illegal_argument
+        RAISE EXCEPTION TYPE cx_parameter_invalid_range
           EXPORTING
-            name  = 'I_INITIALIZATION_VECTOR'
+            parameter  = 'I_INITIALIZATION_VECTOR'
             value = 'Incorrect Initialization Vector length'.
       ENDIF.
 
@@ -581,9 +573,9 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
       "Nothing, default is ECB mode
 
     ELSE.
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_ENCRYPTION_MODE'
+          parameter = 'I_ENCRYPTION_MODE'
           value = 'Incorrect Encryption Mode'.
 
     ENDIF.
@@ -598,9 +590,9 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
         i_padding_standard <> zcl_byte_padding_utility=>mc_padding_standard_pkcs_5 AND
         i_padding_standard <> zcl_byte_padding_utility=>mc_padding_standard_pkcs_7.
 
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_PADDING_STANDARD'
+          parameter = 'I_PADDING_STANDARD'
           value = 'Unsupported padding standard'.
 
     ENDIF.
@@ -609,17 +601,17 @@ CLASS ZCL_AES_UTILITY IMPLEMENTATION.
 
 
   METHOD validate_raw16_table_size.
-    DATA: lv_line_of_raw16_table  TYPE i.
+    DATA lv_line_of_raw16_table TYPE i.
 
     lv_line_of_raw16_table = lines( it_data ).
 
     IF  i_data_length_in_byte > lv_line_of_raw16_table * mc_block_length_in_byte OR
         i_data_length_in_byte <= ( lv_line_of_raw16_table - 1 ) * mc_block_length_in_byte.
 
-      RAISE EXCEPTION TYPE cx_me_illegal_argument
+      RAISE EXCEPTION TYPE cx_parameter_invalid_range
         EXPORTING
-          name  = 'I_DATA_LENGTH_IN_BYTE'
-          value = 'Data length and table size do not match.'.
+          parameter = 'I_DATA_LENGTH_IN_BYTE'
+          value     = 'Data length and table size do not match.'.
 
     ENDIF.
 
