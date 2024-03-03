@@ -8,9 +8,9 @@
     "unit": "rm -rf output && abap_transpile abap_transpile.json && echo RUNNING && node output/index.mjs"
   },
   "dependencies": {
-    "@abaplint/cli": "^2.103.6",
-    "@abaplint/runtime": "^2.7.135",
-    "@abaplint/transpiler-cli": "^2.7.135"
+    "@abaplint/cli": "^2.105.26",
+    "@abaplint/runtime": "^2.8.1",
+    "@abaplint/transpiler-cli": "^2.8.1"
   },
   "author": "",
   "license": "MIT"
